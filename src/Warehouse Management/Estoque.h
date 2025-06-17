@@ -12,11 +12,7 @@
 #include <iostream>
 #include <string>
 
-/**
- * @class Estoque
- * @brief Representa a quantidade de um produto específico em um local de armazenamento.
- * Esta versão combina os conceitos de Estoque e ItemEstoque em uma única classe.
- */
+
 class Estoque {
 private:
     int id_estoque;
