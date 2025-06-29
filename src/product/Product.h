@@ -8,6 +8,8 @@
  *
  * Histórico de Modificações:
  *  - 15/06/2025: Versão inicial (Vitor)
+ *  - 29/06/2025: Formatando código (Vitor)
+ * 
  ******************************************************************************/
 
 #ifndef PRODUCT_H
@@ -29,7 +31,7 @@ public:
     Product(const int id, const std::string &name, const std::string &description, const int weigth, const std::string &unit_measure);
 
     int getId() const;
-    
+
     // Name
     std::string getName() const;
     void setName(const std::string &name);

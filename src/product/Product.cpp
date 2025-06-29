@@ -7,95 +7,41 @@
  * Projeto     : Projeto prático de EDOO
  *
  * Histórico de Modificações:
- *  - 15/06/2025: Versão inicial (Vitor)
+ *  - 29/06/2025: Implementando classe (Vitor)
  ******************************************************************************/
 
 #include "Product.h"
 
 // Constructor
-Product::Product(
-    const int id,
-    const std::string &name,
-    const std::string &description,
-    const int weigth,
-    const std::string &unit_measure)
-    : _id(id),
-      _name(name),
-      _description(description),
-      _weigth(weigth),
-      _unit_measure(unit_measure) {}
-
-// ID
-class Product
+Product::init(
+    const int i_id,
+    const std::string &i_name,
+    const std::string &i_description,
+    const int i_weigth,
+    const std::string &i_unit_measure, )
 {
-private:
-    int _id;
-    std::string _name;
-    std::string _description;
-    int _weigth;
-    std::string _unit_measure;
+    id = i_id;
+    name = i_name;
+    description = i_description;
+    weigth = i_weigth;
+    unit_measure = i_unit_measure;
+}
 
-public:
-    // Constructor
-    Product(
-        const int id,
-        const std::string &name,
-        const std::string &description,
-        const int weigth,
-        const std::string &unit_measure)
-        : _id(id),
-          _name(name),
-          _description(description),
-          _weigth(weigth),
-          _unit_measure(unit_measure) {}
+int Product::get_id() const { return id; }
 
-    // ID
-    int get_id() const
-    {
-        return _id;
-    }
+// Name
+std::string Product::get_name() const { return name; }
 
-    // Name
-    std::string get_name() const
-    {
-        return _name;
-    }
+void Product::set_name(const std::string &new_name) { name = new_name; }
 
-    void set_name(const std::string &name)
-    {
-        _name = name;
-    }
+// Description
+std::string Product::get_description() const { return description; }
+void Product::set_description(const std::string &new_description) { description = new_description; }
 
-    // Description
-    std::string get_description() const
-    {
-        return _description;
-    }
+// Weigth
+int Product::get_weigth() const { return weigth; }
+void Product::set_weigth(int &new_weigth) { weigth = new_weigth; }
 
-    void set_description(const std::string &description)
-    {
-        _description = description;
-    }
-
-    // Weigth
-    int get_weigth() const
-    {
-        return _weigth;
-    }
-
-    void set_weigth(int weigth)
-    {
-        _weigth = weigth;
-    }
-
-    // Unit of measure
-    std::string get_unitMeasure() const
-    {
-        return _unit_measure;
-    }
-
-    void set_unitMeasure(const std::string &unit_measure)
-    {
-        _unit_measure = unit_measure;
-    }
-};
+// Unit of measure
+std::string Product::get_unit_measure() const { return unit_measure; }
+void Product::set_unit_measure(const std::string &new_unit_measure) { unit_measure = new_unit_measure; } 
