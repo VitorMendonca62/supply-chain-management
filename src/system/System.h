@@ -16,19 +16,13 @@
 #define SYSTEM_H
 
 #include <iostream>
-#include "User_Printer.h"
+#include "user_view.h"
 
 class System
 {
 private:
 public:
-  // Constructor
-  System()
-
-  {
-  }
-
-  void print_start() const;
-  void print_menu() const;
+  UserView* print_start() const;
+  void print_menu(const UserView &user_view) const;
 };
 #endif

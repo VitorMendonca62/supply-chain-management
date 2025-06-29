@@ -14,14 +14,17 @@
 
 #include "System.h"
 #include <iostream>
+#include "User_View.h"
+#include "../manager/manager_view.h"
+#include "../employee/employee_view.h"
 
-void System::print_start() const
+UserView *System::print_start() const
 {
   std::cout << "==========================================\n";
   std::cout << " Bem-vindo ao Sistema de Gerenciamento \n";
   std::cout << "==========================================\n";
   std::cout << "Escolha como deseja acessar o sistema:\n";
-  std::cout << "1. Acessar como Usuário\n";
+  std::cout << "1. Acessar como Funcionario\n";
   std::cout << "2. Acessar como Gerente\n";
   std::cout << "3. Sair\n";
 
@@ -31,60 +34,35 @@ void System::print_start() const
     switch (action)
     {
     case 1:
-
-      std::cout << "Acessando como Usuário...\n";
+      std::cout << "Acessando como Funcionario...\n";
       // Pedir nome e sennha
       // Onde vai estar armazenado os usuarios?
-      break;
+      return new EmployeeView();
     case 2:
-    {
       std::cout << "Acessando como Gerente...\n";
-      break;
-    }
+      return new ManagerView();
+
     case 3:
       std::cout << "Encerrando o sistema. Até logo!\n";
       exit(0);
-      break;
     default:
       std::cout << "Opção inválida. Tente novamente.\n";
+      return print_start();
     }
   }
   else
   {
     std::cerr << "Erro ao ler a entrada.\n";
+    return print_start();
   }
 }
 
-void System::print_menu() const
+void System::print_menu(const UserView &user_view) const
 {
-
+  user_view.print_menu();
   int action;
-  if (std::cin >> action)
-  {
-    switch (action)
-    {
-    case 1:
-      std::cout << "Acessando Fornecedores... \n";
-      // Chamar função para gerenciar fornecedores
-      break;
-    case 2:
-      std::cout << "Acessando Produtos... \n";
-      // Chamar função para gerenciar produtos
-      break;
-    case 3:
-      std::cout << "Acessando Estoque... \n";
-      // Chamar função para gerenciar estoque
-      break;
-    case 4:
-      std::cout << "Saindo do sistema. Até logo! \n";
-      exit(0);
-      break;
-    default:
-      std::cout << "Opção inválida. Tente novamente. \n";
-    }
-  }
-  else
-  {
-    std::cerr << "Erro ao ler a entrada. \n";
-  }
+  std::cin >> action;
+  user_view.call_menu_function(action);
+
+
 }

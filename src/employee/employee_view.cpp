@@ -12,13 +12,9 @@
  ******************************************************************************/
 
 #include <iostream>
-#include <employee_printer.h>
-// Constructor
-void EmployeePrinter::init()
-{
-}
+#include "employee_view.h"
 
-void EmployeePrinter::print_menu()
+void EmployeeView::print_menu() const
 {
   std::cout << "Agora você pode visualizar os itens abaixo. \n";
   std::cout << "O que você gostaria de fazer? \n";
@@ -26,4 +22,29 @@ void EmployeePrinter::print_menu()
   std::cout << "2. Acessar Produtos \n";
   std::cout << "3. Acessar Estoque \n";
   std::cout << "4. Sair \n";
+}
+
+void EmployeeView::call_menu_function(int action) const
+{
+  switch (action)
+  {
+  case 1:
+    std::cout << "Visualizando Fornecedores... \n";
+    // Chamar função para gerenciar fornecedores
+    break;
+  case 2:
+    std::cout << "Visualizando Produtos... \n";
+    // Chamar função para gerenciar produtos
+    break;
+  case 3:
+    std::cout << "Visualizando Estoque... \n";
+    // Chamar função para gerenciar estoque
+    break;
+  case 4:
+    std::cout << "Saindo do sistema. Até logo! \n";
+    exit(0);
+    break;
+  default:
+    std::cout << "Opção inválida. Tente novamente. \n";
+  }
 }

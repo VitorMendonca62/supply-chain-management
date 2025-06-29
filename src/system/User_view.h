@@ -1,9 +1,9 @@
 /******************************************************************************
- * Arquivo     : User_Printer.h
+ * Arquivo     : User_View.h
  * Autor       : Vitor Mendonça
  * Criado em   : 29/06/2025
  * Descrição   :
- *   Este arquivo define a classe User_Printer.h.
+ *   Este arquivo define a classe User_View.h.
  *
  * Projeto     : Projeto prático de EDOO
  *
@@ -11,19 +11,19 @@
  *  - 29/06/2025: Versão inicial (Vitor)
  ******************************************************************************/
 
-#ifndef USER_PRINTER_H
-#define USER_PRINTER_H
+#ifndef USER_VIEW_H
+#define USER_VIEW_H
 
 #include <iostream>
 
-class UserPrinter
+class UserView
 {
 private:
 public:
   // Constructor
-  UserPrinter() = default;
+  UserView() = default;
 
-  void init() const;
-  void print_menu() const;
+  virtual void print_menu() const = 0;
+  virtual void call_menu_function(int action) const = 0;
 };
 #endif
