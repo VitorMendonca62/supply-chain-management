@@ -1,9 +1,9 @@
 /******************************************************************************
- * Arquivo     : Manager_view.cpp
+ * Arquivo     : Emplyee.cpp
  * Autor       : Vitor Mendonça
  * Criado em   : 29/06/2025
  * Descrição   :
- *   Este arquivo implementa User.h, chama funções e printa tudo relacionado ao manager.
+ *   Este arquivo implementa User.h e printa tudo relacionado ao employee.
  *
  * Projeto     : Projeto prático de EDOO
  *
@@ -12,32 +12,32 @@
  ******************************************************************************/
 
 #include <iostream>
-#include "manager_view.h"
+#include "employee_view.h"
 
-void ManagerView::print_menu() const
+void EmployeeView::print_menu() const
 {
-  std::cout << "Agora você pode gerenciar os seguintes itens abaixo. \n";
+  std::cout << "Agora você pode visualizar os itens abaixo. \n";
   std::cout << "O que você gostaria de fazer? \n";
-  std::cout << "1. Gerenciar Fornecedores \n";
-  std::cout << "2. Gerenciar Produtos \n";
-  std::cout << "3. Gerenciar Estoque \n";
+  std::cout << "1. Acessar Fornecedores \n";
+  std::cout << "2. Acessar Produtos \n";
+  std::cout << "3. Acessar Estoque \n";
   std::cout << "4. Sair \n";
 }
 
-void ManagerView::call_menu_function(int action) const
+void EmployeeView::call_menu_function(int action) const
 {
   switch (action)
   {
   case 1:
-    std::cout << "Gerenciando Fornecedores... \n";
-    print_vendors_actions();
+    std::cout << "Visualizando Fornecedores... \n";
+    // Chamar função para gerenciar fornecedores
     break;
   case 2:
-    std::cout << "Gerenciando Produtos... \n";
+    std::cout << "Visualizando Produtos... \n";
     // Chamar função para gerenciar produtos
     break;
   case 3:
-    std::cout << "Gerenciando Estoque... \n";
+    std::cout << "Visualizando Estoque... \n";
     // Chamar função para gerenciar estoque
     break;
   case 4:

@@ -3,7 +3,7 @@
  * Autor       : Vitor Mendonça
  * Criado em   : 29/06/2025
  * Descrição   :
- *   Este arquivo define, a partir de User_view.h, os atributos e métodos
+ *   Este arquivo define, a partir de menu_view.h, os atributos e métodos
  *
  * Projeto     : Projeto prático de EDOO
  *
@@ -14,9 +14,9 @@
 #ifndef MANAGER_VIEW_H
 #define MANAGER_VIEW_H
 
-#include "../system/user_view.h"
+#include "../shared/menu_view.h"
 
-class ManagerView : public UserView
+class ManagerView : public MenuView
 {
 public:
   ManagerView() {};

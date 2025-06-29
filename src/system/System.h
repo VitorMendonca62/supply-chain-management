@@ -16,13 +16,13 @@
 #define SYSTEM_H
 
 #include <iostream>
-#include "user_view.h"
+#include "../shared/menu_view.h"
 
 class System
 {
 private:
 public:
-  UserView* print_start() const;
-  void print_menu(const UserView &user_view) const;
+  MenuView* print_start() const;
+  void print_menu(const MenuView &menu_view) const;
 };
 #endif

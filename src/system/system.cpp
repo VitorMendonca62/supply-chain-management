@@ -14,11 +14,11 @@
 
 #include "System.h"
 #include <iostream>
-#include "User_View.h"
+#include "../shared/menu_view.h"
 #include "../manager/manager_view.h"
 #include "../employee/employee_view.h"
 
-UserView *System::print_start() const
+MenuView *System::print_start() const
 {
   std::cout << "==========================================\n";
   std::cout << " Bem-vindo ao Sistema de Gerenciamento \n";
@@ -57,12 +57,12 @@ UserView *System::print_start() const
   }
 }
 
-void System::print_menu(const UserView &user_view) const
+void System::print_menu(const MenuView &menu_view) const
 {
-  user_view.print_menu();
+  menu_view.print_menu();
   int action;
   std::cin >> action;
-  user_view.call_menu_function(action);
+  menu_view.call_menu_function(action);
 
 
 }
