@@ -1,10 +1,9 @@
 /******************************************************************************
- * Arquivo     : System.h
+ * Arquivo     : User_Printer.h
  * Autor       : Vitor Mendonça
  * Criado em   : 29/06/2025
  * Descrição   :
- *   Este arquivo define a classe System, que representa uma view no sistema
- *   de gerenciamento da cadeia de suprimentos.
+ *   Este arquivo define a classe User_Printer.h.
  *
  * Projeto     : Projeto prático de EDOO
  *
@@ -12,23 +11,19 @@
  *  - 29/06/2025: Versão inicial (Vitor)
  ******************************************************************************/
 
-#ifndef SYSTEM_H
-#define SYSTEM_H
+#ifndef USER_PRINTER_H
+#define USER_PRINTER_H
 
 #include <iostream>
-#include "User_Printer.h"
 
-class System
+class UserPrinter
 {
 private:
 public:
   // Constructor
-  System()
+  UserPrinter() = default;
 
-  {
-  }
-
-  void print_start() const;
+  void init() const;
   void print_menu() const;
 };
 #endif

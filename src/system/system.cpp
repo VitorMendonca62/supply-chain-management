@@ -15,12 +15,7 @@
 #include "System.h"
 #include <iostream>
 
-// Constructor
-System::init()
-{
-}
-
-void System::print_start()
+void System::print_start() const
 {
   std::cout << "==========================================\n";
   std::cout << " Bem-vindo ao Sistema de Gerenciamento \n";
@@ -57,14 +52,11 @@ void System::print_start()
   else
   {
     std::cerr << "Erro ao ler a entrada.\n";
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   }
 }
 
-void System::print_menu(const User &userPrinter)
+void System::print_menu() const
 {
-  userPrinter.print_menu();
 
   int action;
   if (std::cin >> action)
@@ -72,28 +64,27 @@ void System::print_menu(const User &userPrinter)
     switch (action)
     {
     case 1:
-
-      std::cout << "Acessando como Usuário...\n";
-      // Pedir nome e sennha
-      // Onde vai estar armazenado os usuarios?
+      std::cout << "Acessando Fornecedores... \n";
+      // Chamar função para gerenciar fornecedores
       break;
     case 2:
-    {
-      std::cout << "Acessando como Gerente...\n";
+      std::cout << "Acessando Produtos... \n";
+      // Chamar função para gerenciar produtos
       break;
-    }
     case 3:
-      std::cout << "Encerrando o sistema. Até logo!\n";
+      std::cout << "Acessando Estoque... \n";
+      // Chamar função para gerenciar estoque
+      break;
+    case 4:
+      std::cout << "Saindo do sistema. Até logo! \n";
       exit(0);
       break;
     default:
-      std::cout << "Opção inválida. Tente novamente.\n";
+      std::cout << "Opção inválida. Tente novamente. \n";
     }
   }
   else
   {
-    std::cerr << "Erro ao ler a entrada.\n";
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cerr << "Erro ao ler a entrada. \n";
   }
 }
