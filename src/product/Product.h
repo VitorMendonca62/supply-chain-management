@@ -28,17 +28,22 @@ public:
     // Construtor
     Product(const int id, const std::string &name, const std::string &description, const int weigth, const std::string &unit_measure);
 
-    // Getters
     int getId() const;
+    
+    // Name
     std::string getName() const;
-    std::string getDescription() const;
-    int getWeigth() const;
-    std::string getUnitMeasure() const;
-
-    // Setters
     void setName(const std::string &name);
+    
+    // Description
+    std::string getDescription() const;
     void setDescription(const std::string &description);
+    
+    // Weight
     void setWeigth(int weigth);
+    int getWeigth() const;
+    
+    // UnitMeasure
+    std::string getUnitMeasure() const;
     void setUnitMeasure(const std::string &unit_measure);
 };
 
