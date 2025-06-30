@@ -22,8 +22,6 @@ public:
   ManagerView() {};
   void print_menu() const override;
   void call_menu_function(int action) const override;
-  void print_vendors_actions() const;
-  void call_vendors_function(int action) const;
 };
 
 #endif

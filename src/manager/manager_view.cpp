@@ -13,6 +13,10 @@
 
 #include <iostream>
 #include "manager_view.h"
+#include "../vendor/vendor_view.h"
+#include "../product/product_view.h"
+#include "../stock/stock_view.h"
+#include "../shared/menu_view.h"
 
 void ManagerView::print_menu() const
 {
@@ -26,18 +30,22 @@ void ManagerView::print_menu() const
 
 void ManagerView::call_menu_function(int action) const
 {
+  MenuView *viewer;
   switch (action)
   {
   case 1:
     std::cout << "Gerenciando Fornecedores... \n";
-    print_vendors_actions();
+
+    viewer = new VendorView();
     break;
   case 2:
     std::cout << "Gerenciando Produtos... \n";
+    viewer = new ProductView();
     // Chamar função para gerenciar produtos
     break;
   case 3:
     std::cout << "Gerenciando Estoque... \n";
+    viewer = new StockView();
     // Chamar função para gerenciar estoque
     break;
   case 4:
@@ -46,5 +54,12 @@ void ManagerView::call_menu_function(int action) const
     break;
   default:
     std::cout << "Opção inválida. Tente novamente. \n";
+    call_menu_function(action);
+    break;
   }
+
+  viewer->print_menu();
+  int new_action;
+  std::cin >> new_action;
+  viewer->call_menu_function(new_action);
 }
