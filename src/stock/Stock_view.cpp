@@ -27,30 +27,38 @@ void StockView::print_menu() const
   std::cout << "5. Voltar ao menu principal\n";
 }
 
-void StockView::call_menu_function(int action) const
+void StockView::call_menu_function() const
 {
-  switch (action)
+  int action;
+
+  while (action != 5)
   {
-  case 1:
-    std::cout << "Exibindo estoque atual...\n";
-    // Função para listar estoque
-    break;
-  case 2:
-    std::cout << "Adicionando quantidade a um produto...\n";
-    // Função para adicionar ao estoque
-    break;
-  case 3:
-    std::cout << "Removendo quantidade de um produto...\n";
-    // Função para remover do estoque
-    break;
-  case 4:
-    std::cout << "Informe o ID do produto que deseja verificar:\n";
-    // Função para verificar estoque do produto
-    break;
-  case 5:
-    std::cout << "Retornando ao menu principal...\n";
-    break;
-  default:
-    std::cout << "Opção inválida. Tente novamente.\n";
+    print_menu();
+    std::cin >> action;
+
+    switch (action)
+    {
+    case 1:
+      std::cout << "Exibindo estoque atual...\n";
+      // Função para listar estoque
+      break;
+    case 2:
+      std::cout << "Adicionando quantidade a um produto...\n";
+      // Função para adicionar ao estoque
+      break;
+    case 3:
+      std::cout << "Removendo quantidade de um produto...\n";
+      // Função para remover do estoque
+      break;
+    case 4:
+      std::cout << "Informe o ID do produto que deseja verificar:\n";
+      // Função para verificar estoque do produto
+      break;
+    case 5:
+      std::cout << "Retornando ao menu principal...\n";
+      break;
+    default:
+      std::cout << "Opção inválida. Tente novamente.\n";
+    }
   }
 }

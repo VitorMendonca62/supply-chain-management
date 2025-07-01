@@ -59,10 +59,5 @@ MenuView *System::print_start() const
 
 void System::print_menu(const MenuView &menu_view) const
 {
-  menu_view.print_menu();
-  int action;
-  std::cin >> action;
-  menu_view.call_menu_function(action);
-
-
+  menu_view.call_menu_function();
 }
