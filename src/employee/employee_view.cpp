@@ -24,27 +24,35 @@ void EmployeeView::print_menu() const
   std::cout << "4. Sair \n";
 }
 
-void EmployeeView::call_menu_function(int action) const
+void EmployeeView::call_menu_function() const
 {
-  switch (action)
+  int action;
+
+  while (true)
   {
-  case 1:
-    std::cout << "Visualizando Fornecedores... \n";
-    // Chamar função para gerenciar fornecedores
-    break;
-  case 2:
-    std::cout << "Visualizando Produtos... \n";
-    // Chamar função para gerenciar produtos
-    break;
-  case 3:
-    std::cout << "Visualizando Estoque... \n";
-    // Chamar função para gerenciar estoque
-    break;
-  case 4:
-    std::cout << "Saindo do sistema. Até logo! \n";
-    exit(0);
-    break;
-  default:
-    std::cout << "Opção inválida. Tente novamente. \n";
+    print_menu();
+    std::cin >> action;
+
+    switch (action)
+    {
+    case 1:
+      std::cout << "Visualizando Fornecedores... \n";
+      // Chamar função para gerenciar fornecedores
+      break;
+    case 2:
+      std::cout << "Visualizando Produtos... \n";
+      // Chamar função para gerenciar produtos
+      break;
+    case 3:
+      std::cout << "Visualizando Estoque... \n";
+      // Chamar função para gerenciar estoque
+      break;
+    case 4:
+      std::cout << "Saindo do sistema. Até logo! \n";
+      exit(0);
+      break;
+    default:
+      std::cout << "Opção inválida. Tente novamente. \n";
+    }
   }
 }

@@ -1,30 +1,25 @@
 /******************************************************************************
-* Arquivo     : stock.cpp
+ * Arquivo     : Estoque.cpp
  * Autor       : Arthur Marinho
  * Criado em   : 17/06/2025
  * Descrição   : Arquivo de implementação para a classe Estoque (versão refatorada).
  ******************************************************************************/
 
 #include "stock.h"
-#include <iostream>
 
-// --- Constructor Definition ---
-Stock::Stock(int stockId, int productId, int qty, const std::string& location, const std::string& date)
-    : stock_id(stockId),
-      product_id(productId),
-      quantity(qty),
-      stock_location(location),
-      last_movement_date(date) {
-    std::cout << "Stock object with ID " << stock_id << " created." << std::endl;
+// --- Definições dos Métodos da Classe Estoque ---
+
+
+bool Stock::init(int stockId, int productId, int qty, const std::string& location, const std::string& date) {
+    stock_id = stockId;
+    product_id = productId;
+    quantity = qty;
+    stock_location = location;
+    last_movement_date = date;
+    return true;
 }
 
-// --- Destructor Definition ---
-Stock::~Stock() {
-    std::cout << "Stock object with ID " << stock_id << " is being destroyed." << std::endl;
-}
-
-
-// --- Getters ---
+// Getters
 int Stock::getStockId() const {
     return stock_id;
 }
@@ -45,7 +40,7 @@ std::string Stock::getLastMovementDate() const {
     return last_movement_date;
 }
 
-// --- Setters ---
+// Setters
 void Stock::setQuantity(int new_quantity) {
     quantity = new_quantity;
 }

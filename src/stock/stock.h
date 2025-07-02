@@ -1,5 +1,5 @@
 /******************************************************************************
-* Arquivo     : stock.h
+ * Arquivo     : Estoque.h
  * Autor       : Arthur Marinho
  * Criado em   : 17/06/2025
  * Descrição   : Arquivo de cabeçalho para a classe Estoque (versão refatorada).
@@ -10,7 +10,6 @@
 #define STOCK_H
 
 #include <string>
-#include <iostream>
 
 class Stock {
 private:
@@ -21,11 +20,8 @@ private:
     std::string last_movement_date; // Maintained from the StockItem class
 
 public:
-    // --- Constructor ---
-    Stock(int stockId, int productId, int qty, const std::string& location, const std::string& date);
-
-    // --- Destructor ---
-    ~Stock();
+    // Initialization method
+    bool init(int stockId, int productId, int qty, const std::string& location, const std::string& date);
 
     // Getters
     int getStockId() const;

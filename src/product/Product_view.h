@@ -8,7 +8,7 @@ class ProductView : public MenuView
 public:
   ProductView() {};
   void print_menu() const override;
-  void call_menu_function(int action) const override;
+  void call_menu_function() const override;
 
 };
 

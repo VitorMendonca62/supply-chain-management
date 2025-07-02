@@ -12,11 +12,7 @@ public:
   VendorView() {};
   void print_menu() const override;
   void call_menu_function(int action) const override;
-  void pushVendor( Vendor );
-  void createVendor( ); 
-  Vendor getVendor( ) const;
 
-  
 };
 
 #endif

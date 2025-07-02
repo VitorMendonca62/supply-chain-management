@@ -21,7 +21,7 @@ class ManagerView : public MenuView
 public:
   ManagerView() {};
   void print_menu() const override;
-  void call_menu_function(int action) const override;
+  void call_menu_function() const override;
 };
 
 #endif

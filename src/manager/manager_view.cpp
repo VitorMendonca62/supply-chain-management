@@ -28,38 +28,44 @@ void ManagerView::print_menu() const
   std::cout << "4. Sair \n";
 }
 
-void ManagerView::call_menu_function(int action) const
+void ManagerView::call_menu_function() const
 {
+
   MenuView *viewer;
-  switch (action)
+  int action;
+
+  while (true)
   {
-  case 1:
-    std::cout << "Gerenciando Fornecedores... \n";
+    print_menu();
+    std::cin >> action;
 
-    viewer = new VendorView();
-    break;
-  case 2:
-    std::cout << "Gerenciando Produtos... \n";
-    viewer = new ProductView();
-    // Chamar função para gerenciar produtos
-    break;
-  case 3:
-    std::cout << "Gerenciando Estoque... \n";
-    viewer = new StockView();
-    // Chamar função para gerenciar estoque
-    break;
-  case 4:
-    std::cout << "Saindo do sistema. Até logo! \n";
-    exit(0);
-    break;
-  default:
-    std::cout << "Opção inválida. Tente novamente. \n";
-    call_menu_function(action);
-    break;
+    switch (action)
+    {
+    case 1:
+      std::cout << "Gerenciando Fornecedores... \n";
+
+      viewer = new VendorView();
+      break;
+    case 2:
+      std::cout << "Gerenciando Produtos... \n";
+      viewer = new ProductView();
+      // Chamar função para gerenciar produtos
+      break;
+    case 3:
+      std::cout << "Gerenciando Estoque... \n";
+      viewer = new StockView();
+      // Chamar função para gerenciar estoque
+      break;
+    case 4:
+      std::cout << "Saindo do sistema. Até logo! \n";
+      exit(0);
+      break;
+    default:
+      std::cout << "Opção inválida. Tente novamente. \n";
+      call_menu_function();
+      break;
+    }
+
+    viewer->call_menu_function();
   }
-
-  viewer->print_menu();
-  int new_action;
-  std::cin >> new_action;
-  viewer->call_menu_function(new_action);
 }

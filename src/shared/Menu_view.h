@@ -24,6 +24,6 @@ public:
   MenuView() = default;
 
   virtual void print_menu() const = 0;
-  virtual void call_menu_function(int action) const = 0;
+  virtual void call_menu_function() const = 0;
 };
 #endif
