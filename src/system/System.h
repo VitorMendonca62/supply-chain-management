@@ -16,7 +16,7 @@
 #define SYSTEM_H
 
 #include <iostream>
-#include "../shared/menu_view.h"
+#include "../shared/Menu_view.h"
 
 class System
 {

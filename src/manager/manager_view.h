@@ -14,7 +14,7 @@
 #ifndef MANAGER_VIEW_H
 #define MANAGER_VIEW_H
 
-#include "../shared/menu_view.h"
+#include "../shared/Menu_view.h"
 
 class ManagerView : public MenuView
 {

@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include "vendor_view.h"
+#include "vendor.h"
 
 void VendorView::print_menu() const
 {
@@ -34,7 +35,7 @@ void VendorView::call_menu_function(int action) const
   {
   case 1:
     std::cout << "Iniciando cadastro de novo fornecedor...\n";
-    // Função para adicionar fornecedor
+    this->createVendor( );
     break;
   case 2:
     std::cout << "Listando todos os fornecedores...\n";
@@ -58,4 +59,27 @@ void VendorView::call_menu_function(int action) const
   default:
     std::cout << "Opção inválida. Tente novamente.\n";
   }
+}
+
+void VendorView::pushVendor(Vendor i_vendor) { vendors.push_back(i_vendor);}
+
+Vendor VendorView::getVendor( ) const {return vendors;}
+
+void VendorView::createVendor( ) {
+  std::string values[5];
+  std::string tittles[5] = {"Nome", "CNPJ", "Numero de telefone", "Email", "CEP"};
+  const std::string end_question_text = "do Fornecedor";
+  std::string print_text;
+
+
+  for (int i; i < tittles->length() ; i++) {
+    print_text = tittles[i] + end_question_text;
+    std::cout << print_text;
+    std::cin >> values[i]; 
+  }
+  Vendor vendor;
+  vendor.init(values[0],values[1],values[2],values[3],values[4]);
+  this->pushVendor( vendor );
+
+  
 }

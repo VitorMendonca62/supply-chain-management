@@ -1,7 +1,7 @@
 #ifndef PRODUCT_VIEW_H
 #define PRODUCT_VIEW_H
 
-#include "../shared/menu_view.h"
+#include "../shared/Menu_view.h"
 
 class ProductView : public MenuView
 {

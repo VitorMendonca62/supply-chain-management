@@ -14,9 +14,9 @@
 #include <iostream>
 #include "manager_view.h"
 #include "../vendor/vendor_view.h"
-#include "../product/product_view.h"
-#include "../stock/stock_view.h"
-#include "../shared/menu_view.h"
+#include "../product/Product_view.h"
+#include "../stock/Stock_view.h"
+#include "../shared/Menu_view.h"
 
 void ManagerView::print_menu() const
 {

@@ -1,7 +1,7 @@
 #ifndef EMPLOYEE_VIEW_H
 #define EMPLOYEE_VIEW_H
 
-#include "../shared/menu_view.h"
+#include "../shared/Menu_view.h"
 
 class EmployeeView : public MenuView
 {

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "system/system.h"
-#include "shared/menu_view.h"
+#include "system/System.h"
+#include "shared/Menu_view.h"
 
 int main() { // Adicione parênteses aqui
     System system;
