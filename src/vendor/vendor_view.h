@@ -11,8 +11,12 @@ private:
 public:
   VendorView() {};
   void print_menu() const override;
-  void call_menu_function(int action) const override;
+  void call_menu_function() const override; // Remember to fix the signature here too!
 
+  // Add these declarations:
+  void pushVendor(Vendor i_vendor);
+  Vendor getVendor() const;
+  void createVendor();
 };
 
 #endif
