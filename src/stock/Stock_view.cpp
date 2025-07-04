@@ -5,9 +5,9 @@
  * Descrição   :
  * Este arquivo implementa User.h e printa tudo relacionado ao estoque.
  *
- * Projeto     : Projeto prático de EDOO
+ * Projeto     : Projeto pratico de EDOO
  *
- * Histórico de Modificações:
+ * Historico de Modificações:
  * - 29/06/2025: Versão inicial (Vitor)
  * - 29/06/2025: Modificado para usar a classe Stock
  * - 29/06/2025: Adicionado menu para cada função de stock.cpp
@@ -26,8 +26,8 @@ StockService* service = new StockService();
 void StockView::print_menu() const
 {
   std::cout << "===== Gerenciamento de Estoque =====\n";
-  std::cout << "Você está no módulo de gerenciamento de estoque.\n";
-  std::cout << "Aqui você pode visualizar e atualizar o estoque de produtos.\n";
+  std::cout << "Voce esta no modulo de gerenciamento de estoque.\n";
+  std::cout << "Aqui voce pode visualizar e atualizar o estoque de produtos.\n";
   std::cout << "Escolha uma das opções abaixo:\n";
   std::cout << "1. Criar novo item de estoque\n";
   std::cout << "2. Listar todos os itens de estoque\n";
@@ -69,7 +69,7 @@ void StockView::call_menu_function() const {
         std::cout << "Retornando ao menu principal...\n";
         break;
       default:
-        std::cout << "Opção inválida. Tente novamente.\n";
+        std::cout << "Opção invalida. Tente novamente.\n";
     }
   }
 }

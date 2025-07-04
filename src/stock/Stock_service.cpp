@@ -1,67 +1,84 @@
+
 #include "Stock_service.h"
 #include <iostream>
 #include "stock.h"
 #include "../include/json.hpp"
 #include <fstream>
-
+#include <conio.h>
 using json = nlohmann::json;
+
+void enter_for_out()
+{
+#ifdef _WIN32
+    _getch();
+    std::system("cls");
+
+#else
+    std::cin.ignore();
+    std::cin.get();
+    std::system("clear");
+#endif
+}
 
 void out_service()
 {
-    std::cout << "Aperte ENTER para exibir o menu";
-    std::cin;
+    std::cout << "Aperte ENTER para exibir o menu ( As mensagens acima serao apagadas)" << std::endl;
+    enter_for_out();
 }
 
 void StockService::create()
 {
     int stock_id, product_id, quantity;
     std::string location, date;
-    std::cout << "Iniciando criação de novo item de estoque...\n";
+    std::cout << "Iniciando criacao de novo item de estoque...";
     std::cout << "Informe o ID do estoque: ";
     std::cin >> stock_id;
     std::cout << "Informe o ID do produto: ";
     std::cin >> product_id;
     std::cout << "Informe a quantidade: ";
     std::cin >> quantity;
-    std::cout << "Informe a localização: ";
+    std::cout << "Informe a localizacao: ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline(std::cin, location);
-    std::cout << "Informe a data da última movimentação (YYYY-MM-DD): ";
+    std::cout << "Informe a data da ultima movimentacao (YYYY-MM-DD): ";
     std::getline(std::cin, date);
 
     Stock newStock(stock_id, product_id, quantity, location, date);
 
     json jsonObj = newStock.toJson();
 
-    std::ifstream inFile("../../db.json");
+    std::ifstream inFile("../db.json");
+    if (!inFile.is_open())
+    {
+        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        out_service();
+        return;
+    }
+
     json db;
-    if (inFile.is_open())
-    {
-        inFile >> db;
-        inFile.close();
-    }
-    else
-    {
-        db["stock"] = json::array();
-    }
+
+    inFile >> db;
+    inFile.close();
 
     db["stock"].push_back(jsonObj);
 
-    std::ofstream outFile("../../db.json");
+    std::ofstream outFile("../db.json");
     outFile << db.dump(4);
     outFile.close();
 
-    std::cout << "Item de estoque criado em JSON:\n"
-              << jsonObj.dump(4) << std::endl;
+    std::cout << "Item de estoque criado com sucesso!" << std::endl;
+
+    out_service();
 }
 
 void StockService::getAll()
 {
-    std::cout << "Exibindo estoque atual...\n";
-    std::ifstream inFile("../../db.json");
+    std::cout << "Exibindo estoque atual..." << std::endl;
+    std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Não foi possível abrir o arquivo de estoque.\n";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        out_service();
         return;
     }
 
@@ -71,38 +88,44 @@ void StockService::getAll()
 
     if (!db.contains("stock") || db["stock"].empty())
     {
-        std::cout << "Nenhum item em estoque.\n";
+        std::cout << "Nenhum item em estoque.";
+        out_service();
+        return;
     }
-    else
+    for (const auto &item : db["stock"])
     {
-        for (const auto &item : db["stock"])
-        {
-            std::cout
-                << "=================================\n"
-                << "ID do Estoque: " << item.value("stock_id", 0)
-                << std::endl
-                << ", ID do Produto: " << item.value("product_id", 0)
-                << std::endl
-                << ", Quantidade: " << item.value("quantity", 0)
-                << std::endl
-                << ", Localização: " << item.value("location", "")
-                << std::endl
-                << ", Última Movimentação: " << item.value("last_movement_date", "") << std::endl
-                << "=================================\n";
-        }
+        std::cout
+            << "================================="
+            << std::endl
+            << "ID do Estoque: " << item.value("stock_id", 0)
+            << std::endl
+            << ", ID do Produto: " << item.value("product_id", 0)
+            << std::endl
+            << ", Quantidade: " << item.value("quantity", 0)
+            << std::endl
+            << ", Localizacao: " << item.value("location", "")
+            << std::endl
+            << ", Ultima Movimentacao: " << item.value("last_movement_date", "") << std::endl
+            << "================================="
+            << std::endl;
+        std::cout << "Aperte ENTER para o proximo item" << std::endl;
+        enter_for_out();
     }
+    std::cout << "Todos os itens foram listados" << std::endl;
+    out_service();
 }
 
 void StockService::getOne()
 {
     int stock_id;
-    std::cout << "Informe o ID do estoque que deseja visualizar:\n";
+    std::cout << "Informe o ID do estoque que deseja visualizar:";
     std::cin >> stock_id;
 
-    std::ifstream inFile("../../db.json");
+    std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Não foi possível abrir o arquivo de estoque.\n";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        out_service();
         return;
     }
 
@@ -117,12 +140,11 @@ void StockService::getOne()
         {
             if (item.value("stock_id", 0) == stock_id)
             {
-                std::cout << "Detalhes do item de estoque:\n";
+                std::cout << "Detalhes do item de estoque:";
                 std::cout << "  ID do Produto: " << item.value("product_id", 0) << std::endl;
                 std::cout << "  Quantidade: " << item.value("quantity", 0) << std::endl;
-                std::cout << "  Localização: " << item.value("location", "") << std::endl;
-                std::cout << "  Última Movimentação: " << item.value("last_movement_date", "") << std::endl;
-                std::cout << "  JSON: " << item.dump(4) << std::endl;
+                std::cout << "  Localizacao: " << item.value("location", "") << std::endl;
+                std::cout << "  Ultima Movimentacao: " << item.value("last_movement_date", "") << std::endl;
                 found = true;
                 break;
             }
@@ -130,8 +152,9 @@ void StockService::getOne()
     }
     if (!found)
     {
-        std::cout << "Item de estoque não encontrado.\n";
+        std::cout << "Item de estoque nao encontrado.";
     }
+    out_service();
 }
 
 void StockService::deleteItem() {}
@@ -140,15 +163,16 @@ void StockService::update() {}
 void StockService::updateStockItemQuantity()
 {
     int stock_id, new_quantity;
-    std::cout << "Informe o ID do estoque que deseja atualizar a quantidade:\n";
+    std::cout << "Informe o ID do estoque que deseja atualizar a quantidade:";
     std::cin >> stock_id;
     std::cout << "Informe a nova quantidade: ";
     std::cin >> new_quantity;
 
-    std::ifstream inFile("../../db.json");
+    std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Não foi possível abrir o arquivo de estoque.\n";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        out_service();
         return;
     }
 
@@ -170,33 +194,34 @@ void StockService::updateStockItemQuantity()
         }
     }
 
-    if (found)
+    if (!found)
     {
-        std::ofstream outFile("../../db.json");
-        outFile << db.dump(4);
-        outFile.close();
-        std::cout << "Quantidade atualizada com sucesso!\n";
+
+        std::cout << "Item de estoque nao encontrado.";
     }
-    else
-    {
-        std::cout << "Item de estoque não encontrado.\n";
-    }
+
+    std::ofstream outFile("../db.json");
+    outFile << db.dump(4);
+    outFile.close();
+    std::cout << "Quantidade atualizada com sucesso!";
+    out_service();
 }
 
 void StockService::updateStockItemLocation()
 {
     int stock_id;
     std::string new_location;
-    std::cout << "Informe o ID do estoque que deseja atualizar a localização:\n";
+    std::cout << "Informe o ID do estoque que deseja atualizar a localizacao:";
     std::cin >> stock_id;
-    std::cout << "Informe a nova localização: ";
+    std::cout << "Informe a nova localizacao: ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline(std::cin, new_location);
 
-    std::ifstream inFile("../../db.json");
+    std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Não foi possível abrir o arquivo de estoque.\n";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        out_service();
         return;
     }
 
@@ -218,33 +243,33 @@ void StockService::updateStockItemLocation()
         }
     }
 
-    if (found)
+    if (!found)
     {
-        std::ofstream outFile("../../db.json");
-        outFile << db.dump(4);
-        outFile.close();
-        std::cout << "Localização atualizada com sucesso!\n";
+        std::cout << "Item de estoque nao encontrado.";
     }
-    else
-    {
-        std::cout << "Item de estoque não encontrado.\n";
-    }
+
+    std::ofstream outFile("../db.json");
+    outFile << db.dump(4);
+    outFile.close();
+    std::cout << "Localizacao atualizada com sucesso!";
+    out_service();
 }
 
 void StockService::updateStockItemLastMovementDate()
 {
     int stock_id;
     std::string new_date;
-    std::cout << "Informe o ID do estoque que deseja atualizar a data da última movimentação:\n";
+    std::cout << "Informe o ID do estoque que deseja atualizar a data da ultima movimentacao:";
     std::cin >> stock_id;
     std::cout << "Informe a nova data (YYYY-MM-DD): ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::getline(std::cin, new_date);
 
-    std::ifstream inFile("../../db.json");
+    std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Não foi possível abrir o arquivo de estoque.\n";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        out_service();
         return;
     }
 
@@ -266,15 +291,14 @@ void StockService::updateStockItemLastMovementDate()
         }
     }
 
-    if (found)
+    if (!found)
     {
-        std::ofstream outFile("../../db.json");
-        outFile << db.dump(4);
-        outFile.close();
-        std::cout << "Data da última movimentação atualizada com sucesso!\n";
+        std::cout << "Item de estoque nao encontrado.";
     }
-    else
-    {
-        std::cout << "Item de estoque não encontrado.\n";
-    }
+
+    std::ofstream outFile("../db.json");
+    outFile << db.dump(4);
+    outFile.close();
+    std::cout << "Data da ultima movimentacao atualizada com sucesso!";
+    out_service();
 }
