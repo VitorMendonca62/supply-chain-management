@@ -8,11 +8,18 @@
  * 
  * Histórico de Modificações:
  *  - 15/06/2025: Versão inicial (Luis)
+ *  - 04/07/2025: Ajustes para armazenamento de informações no JSON (Luis)
  ******************************************************************************/
 
- #include "vendor.h"
- #include <iostream>
+#include "vendor.h"
+#include <iostream>
+#include <limits>
+#include "../include/json.hpp"
+
+using json = nlohmann::json;
  
+
+
  bool Vendor::init(const std::string& i_name, const std::string& i_cnpj, const std::string& i_tel, const std::string& i_mail, const std::string& i_cep) {
      if (i_name.size() < 1) return false;
      if (i_cep.size() < 1 || i_cep.size() > 8) return false;
@@ -39,4 +46,14 @@
  void Vendor::setPhoneNumber(const std::string& newPhone) { phone_number = newPhone; }
  void Vendor::setEmail(const std::string& newEmail) { email = newEmail; }
  void Vendor::setCep(const std::string& newCep) { cep = newCep; }
- 
+
+// Método do json para retornar os dados do Fornecedor
+json Vendor::toJson() const {
+    return json{
+        {"name", name},
+        {"cnpj", cnpj},
+        {"phone_number", phone_number},
+        {"email", email},
+        {"cep", cep}
+    };
+} 

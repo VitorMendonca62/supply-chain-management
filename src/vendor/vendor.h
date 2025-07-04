@@ -8,13 +8,17 @@
  * 
  * Histórico de Modificações:
  *  - 15/06/2025: Versão inicial (Luis)
+ *  - 04/07/2025: Ajustes para armazenamento de dados (Luis)
  ******************************************************************************/
 
  #ifndef VENDOR_H
  #define VENDOR_H
  
  #include <iostream>
- 
+ #include <limits>
+#include "../include/json.hpp"
+using json = nlohmann::json; 
+
  class Vendor {
      private:
          std::string name;        
@@ -22,9 +26,7 @@
          std::string phone_number;
          std::string email;
          std::string cep; // Deve ter no máximo 8 caracteres
- 
-         bool verifyCnpj(const std::string&); // Implementar ainda
- 
+
      public:
          bool init(const std::string&, const std::string&, const std::string&, const std::string&, const std::string&);
  
@@ -41,7 +43,9 @@
          void setPhoneNumber(const std::string&);
          void setEmail(const std::string&);
          void setCep(const std::string&);
+
+        // Método especial para armazenamento de informações no JSON
+        json toJson() const;
  };
  
  #endif
- 
