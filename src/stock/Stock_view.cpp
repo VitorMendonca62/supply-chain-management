@@ -35,32 +35,38 @@ void StockView::print_menu() const
   std::cout << "7. Voltar ao menu principal\n";
 }
 
-void StockView::call_menu_function(int action) const
-{
-  switch (action)
+void StockView::call_menu_function() const {
+  int action; // 'action' was passed in, now we declare it inside
+
+  while (action != 6)
   {
-  case 1:
-    Stock::createStockItem();
-    break;
-  case 2:
-    Stock::listAllStockItems();
-    break;
-  case 3:
-    Stock::viewStockItemDetails();
-    break;
-  case 4:
-    Stock::updateStockItemQuantity();
-    break;
-  case 5:
-    Stock::updateStockItemLocation();
-    break;
-  case 6:
-    Stock::updateStockItemLastMovementDate();
-    break;
-  case 7:
-    std::cout << "Retornando ao menu principal...\n";
-    break;
-  default:
-    std::cout << "Opção inválida. Tente novamente.\n";
+    print_menu();
+    std::cin >> action;
+    switch (action)
+    {
+      case 1:
+        Stock::createStockItem();
+        break;
+      case 2:
+        Stock::listAllStockItems();
+        break;
+      case 3:
+        Stock::viewStockItemDetails();
+        break;
+      case 4:
+        Stock::updateStockItemQuantity();
+        break;
+      case 5:
+        Stock::updateStockItemLocation();
+        break;
+      case 6:
+        Stock::updateStockItemLastMovementDate();
+        break;
+      case 7:
+        std::cout << "Retornando ao menu principal...\n";
+        break;
+      default:
+        std::cout << "Opção inválida. Tente novamente.\n";
+    }
   }
 }
