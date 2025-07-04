@@ -1,14 +1,14 @@
 /******************************************************************************
  * Arquivo     : vendor_view.cpp
- * Autor       : Vitor Mendonça
+ * Autor       : Vitor Mendonca
  * Criado em   : 29/06/2025
- * Descrição   :
+ * Descricao   :
  *   Este arquivo implementa User.h e printa tudo relacionado ao vendor.
  *
- * Projeto     : Projeto prático de EDOO
+ * Projeto     : Projeto pratico de EDOO
  *
- * Histórico de Modificações:
- *  - 29/06/2025: Versão inicial (Vitor)
+ * Histórico de Modificacoes:
+ *  - 29/06/2025: Versao inicial (Vitor)
  ******************************************************************************/
 
 #include <iostream>
@@ -17,16 +17,16 @@
 #include "vendor_service.h"
 #include "../shared/Console_utils.h"
 
-VendorService* service = new VendorService();
+VendorService* vendor_services = new VendorService();
 
 
 
 void VendorView::print_menu() const
 {
   std::cout << "===== Gerenciamento de Fornecedores =====\n";
-  std::cout << "Você está no módulo de gerenciamento de fornecedores.\n";
-  std::cout << "Aqui você pode adicionar, listar, editar ou remover fornecedores do sistema.\n";
-  std::cout << "Escolha uma das opções abaixo:\n";
+  std::cout << "Voce esta no módulo de gerenciamento de fornecedores.\n";
+  std::cout << "Aqui voce pode adicionar, listar, editar ou remover fornecedores do sistema.\n";
+  std::cout << "Escolha uma das opcoes abaixo:\n";
   std::cout << "1. Adicionar novo fornecedor\n";
   std::cout << "2. Listar todos os fornecedores\n";
   std::cout << "3. Buscar fornecedor por ID\n";
@@ -47,28 +47,28 @@ void VendorView::call_menu_function() const
     switch (action)
     {
     case 1:
-      service->create( );
+      vendor_services->create( );
       break;
     case 2:
-      service->getAll( );
+      vendor_services->getAll( );
       break;
     case 3:
-      service->getOne( );
+      vendor_services->getOne( );
       break;
       case 4:
-      service->updateEmailVendor( );
-      // Função para editar email de um fornecedor
+      vendor_services->updateEmailVendor( );
+      // Funcao para editar email de um fornecedor
       break;
       case 5:
-      service->updatePhoneNumberVendor( );
-      // Função para editar telefone de um fornecedor
+      vendor_services->updatePhoneNumberVendor( );
+      // Funcao para editar telefone de um fornecedor
       break;
     case 6:
       std::cout << "Retornando ao menu principal...\n";
       ConsoleUtils::clear();
       break;      
       default:
-      std::cout << "Opção inválida. Tente novamente.\n";
+      std::cout << "Opcao invalida. Tente novamente.\n";
       print_menu();
     }
   }

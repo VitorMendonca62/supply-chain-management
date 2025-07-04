@@ -1,14 +1,14 @@
 /******************************************************************************
  * Arquivo     : vendor.cpp
- * Autor       : Luís Moreira
+ * Autor       : Luis Moreira
  * Criado em   : 15/06/2025
- * Descrição   : Criação do arquivo cpp para a classe Vendor, referente ao fornecedor
+ * Descricao   : Criacao do arquivo cpp para a classe Vendor, referente ao fornecedor
  *
- * Projeto     : Projeto prático de EDOO
+ * Projeto     : Projeto pratico de EDOO
  *
- * Histórico de Modificações:
- *  - 15/06/2025: Versão inicial (Luis)
- *  - 04/07/2025: Ajustes para armazenamento de informações no JSON (Luis)
+ * Histórico de Modificacoes:
+ *  - 15/06/2025: Versao inicial (Luis)
+ *  - 04/07/2025: Ajustes para armazenamento de informacoes no JSON (Luis)
  ******************************************************************************/
 
 #include "vendor.h"
@@ -47,7 +47,7 @@ void Vendor::setPhoneNumber(const std::string &newPhone) { phone_number = newPho
 void Vendor::setEmail(const std::string &newEmail) { email = newEmail; }
 void Vendor::setCep(const std::string &newCep) { cep = newCep; }
 
-// Método do json para retornar os dados do Fornecedor
+// Metodo do json para retornar os dados do Fornecedor
 json Vendor::toJson() const
 {
     return json{

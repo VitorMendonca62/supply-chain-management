@@ -1,13 +1,13 @@
 /******************************************************************************
  * Arquivo     : vendor_service.cpp
- * Autor       : Luís Moreira
+ * Autor       : Luis Moreira
  * Criado em   : 04/07/2025
- * Descrição   : Arquivo cpp responsável pela implementação da classe VendorService
+ * Descricao   : Arquivo cpp responsavel pela implementacao da classe VendorService
  *
- * Projeto     : Projeto prático de EDOO
+ * Projeto     : Projeto pratico de EDOO
  *
- * Histórico de Modificações:
- *  - 04/07/2025: Versão inicial (Luís Moreira)
+ * Histórico de Modificacoes:
+ *  - 04/07/2025: Versao inicial (Luis Moreira)
  ******************************************************************************/
 
 #include "vendor_service.h"
@@ -40,7 +40,7 @@ void VendorService::create()
 
   if (!condition)
   {
-    std::cout << "Nao foi possivel criar usuário. Erro na validação" << std::endl;
+    std::cout << "Nao foi possivel criar usuario. Erro na validacao" << std::endl;
     ConsoleUtils::pause_and_clear();
     return;
   }
@@ -245,7 +245,7 @@ void VendorService::updateEmailVendor()
     {
       if (item.value("cnpj", "") == cnpj_vendor)
       {
-        std::cout << "Informe o endereço de email: ";
+        std::cout << "Informe o endereco de email: ";
         std::cin >> email;
         item["email"] = email;
         found = true;
@@ -264,6 +264,6 @@ void VendorService::updateEmailVendor()
   std::ofstream outFile("../db.json");
   outFile << db.dump(4);
   outFile.close();
-  std::cout << "Endereço de email atualizado com sucesso!" << std::endl;
+  std::cout << "Endereco de email atualizado com sucesso!" << std::endl;
   ConsoleUtils::pause_and_clear();
 }

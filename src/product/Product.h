@@ -17,6 +17,9 @@
 
 #include <iostream>
 
+#include "../include/json.hpp"
+using json = nlohmann::json;
+
 class Product
 {
 private:
@@ -47,6 +50,9 @@ public:
     // UnitMeasure
     std::string getUnitMeasure() const;
     void setUnitMeasure(const std::string &unit_measure);
+
+    json toJson() const;
+
 };
 
 #endif

@@ -2,7 +2,7 @@
 * Arquivo     : stock.cpp
  * Autor       : Arthur Marinho
  * Criado em   : 17/06/2025
- * Descrição   : Arquivo de implementação para a classe Estoque (versão refatorada).
+ * Descricao   : Arquivo de implementacao para a classe Estoque (versao refatorada).
  ******************************************************************************/
 
 #include "stock.h"

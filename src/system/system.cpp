@@ -1,15 +1,15 @@
 /******************************************************************************
  * Arquivo     : System.cpp
- * Autor       : Vitor Mendonça
+ * Autor       : Vitor Mendonca
  * Criado em   : 29/06/2025
- * Descrição   :
+ * Descricao   :
  *   Este arquivo implementa a classe System, que representa uma view no sistema
  *   de gerenciamento da cadeia de suprimentos.
  *
- * Projeto     : Projeto prático de EDOO
+ * Projeto     : Projeto pratico de EDOO
  *
- * Histórico de Modificações:
- *  - 29/06/2025: Versão inicial (Vitor)
+ * Histórico de Modificacoes:
+ *  - 29/06/2025: Versao inicial (Vitor)
  ******************************************************************************/
 
 #include "System.h"
@@ -43,10 +43,10 @@ MenuView *System::print_start() const
       return new ManagerView();
 
     case 3:
-      std::cout << "Encerrando o sistema. Até logo!\n";
+      std::cout << "Encerrando o sistema. Ate logo!\n";
       exit(0);
     default:
-      std::cout << "Opção inválida. Tente novamente.\n";
+      std::cout << "Opcao invalida. Tente novamente.\n";
       return print_start();
     }
   }

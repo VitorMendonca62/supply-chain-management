@@ -1,29 +1,32 @@
 /******************************************************************************
  * Arquivo     : product_view.cpp
- * Autor       : Vitor Mendonça
+ * Autor       : Vitor Mendonca
  * Criado em   : 29/06/2025
- * Descrição   :
+ * Descricao   :
  *   Este arquivo implementa User.h e printa tudo relacionado ao produto.
  *
- * Projeto     : Projeto prático de EDOO
+ * Projeto     : Projeto pratico de EDOO
  *
- * Histórico de Modificações:
- *  - 29/06/2025: Versão inicial (Vitor)
+ * Histórico de Modificacoes:
+ *  - 29/06/2025: Versao inicial (Vitor)
  ******************************************************************************/
 
 #include <iostream>
 #include "product_view.h"
+#include "Product_service.h"
+
+ProductService* product_service_in_employee = new ProductService();
 
 void ProductView::print_menu() const
 {
   std::cout << "===== Gerenciamento de Produtos =====\n";
-  std::cout << "Você está no módulo de gerenciamento de produtos.\n";
-  std::cout << "Aqui você pode adicionar, listar, editar ou remover produtos do sistema.\n";
-  std::cout << "Escolha uma das opções abaixo:\n";
+  std::cout << "Voce esta no módulo de gerenciamento de produtos.\n";
+  std::cout << "Aqui voce pode adicionar, listar, editar ou remover produtos do sistema.\n";
+  std::cout << "Escolha uma das opcoes abaixo:\n";
   std::cout << "1. Adicionar novo produto\n";
   std::cout << "2. Listar todos os produtos\n";
   std::cout << "3. Buscar produto por ID\n";
-  std::cout << "4. Editar informações de um produto\n";
+  std::cout << "4. Editar informacoes de um produto\n";
   std::cout << "5. Remover produto\n";
   std::cout << "6. Voltar ao menu principal\n";
 }
@@ -40,30 +43,30 @@ void ProductView::call_menu_function() const
     switch (action)
     {
     case 1:
-      std::cout << "Iniciando cadastro de novo produto...\n";
-      // Função para adicionar produto
+      product_service_in_employee->create();      // Funcao para adicionar produto
+
       break;
     case 2:
-      std::cout << "Listando todos os produtos...\n";
-      // Função para listar produtos
+      // Funcao para listar produtos
+      product_service_in_employee->getAll();
       break;
     case 3:
-      std::cout << "Informe o ID do produto que deseja buscar:\n";
-      // Função para buscar produto
+      // Funcao para buscar produto
+      product_service_in_employee->getOne();
       break;
     case 4:
-      std::cout << "Informe o ID do produto que deseja editar:\n";
-      // Função para editar produto
+      // Funcao para editar produto
+      product_service_in_employee->update();
       break;
     case 5:
-      std::cout << "Informe o ID do produto que deseja remover:\n";
-      // Função para remover produto
+      // Funcao para remover produto
+      product_service_in_employee->deleteItem();
       break;
     case 6:
       std::cout << "Retornando ao menu principal...\n";
       break;
     default:
-      std::cout << "Opção inválida. Tente novamente.\n";
+      std::cout << "Opcao invalida. Tente novamente.\n";
     }
   }
 }

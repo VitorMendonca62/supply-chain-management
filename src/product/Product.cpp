@@ -1,12 +1,12 @@
 /******************************************************************************
 * Arquivo     : Product.cpp
- * Autor       : Vitor Mendonça
+ * Autor       : Vitor Mendonca
  * Criado em   : 15/06/2025
- * Descrição   : Implementação da classe Product, referente ao produto
+ * Descricao   : Implementacao da classe Product, referente ao produto
  *
- * Projeto     : Projeto prático de EDOO
+ * Projeto     : Projeto pratico de EDOO
  *
- * Histórico de Modificações:
+ * Histórico de Modificacoes:
  * - 29/06/2025: Implementando classe (Vitor)
  ******************************************************************************/
 
@@ -47,3 +47,14 @@ void Product::setWeigth(int new_weigth) { weigth = new_weigth; }
 std::string Product::getUnitMeasure() const { return unit_measure; }
 
 void Product::setUnitMeasure(const std::string &new_unit_measure) { unit_measure = new_unit_measure; }
+
+// Metodo do json para retornar os dados do Produto
+json Product::toJson() const
+{
+    return json{
+        {"name", name},
+        {"id", id},
+        {"description", description},
+        {"weigth", weigth},
+        {"unit_measure", unit_measure}};
+}
