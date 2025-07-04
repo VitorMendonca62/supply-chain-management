@@ -14,7 +14,7 @@ void ProductService::create()
   int weigth;
 
   std::cout << "Iniciando criacao de novo produto..." << std::endl;
-  std::cout << "Informe o id do produto: ";
+  std::cout << "Informe o id do produto (inteiro): ";
   std::cin >> id;
   std::cout << "Informe o nome do produto: ";
   std::cin >> name;
@@ -89,7 +89,7 @@ void ProductService::getAll()
 void ProductService::getOne()
 {
   int id;
-  std::cout << "Informe o ID do produto: ";
+  std::cout << "Informe o ID do produto (inteiro): ";
   std::cin >> id;
 
   std::ifstream inFile("../db.json");
@@ -133,7 +133,7 @@ void ProductService::getOne()
 void ProductService::update()
 {
   int id;
-  std::cout << "Informe o ID do produto que deseja atualizar: ";
+  std::cout << "Informe o ID do produto que deseja atualizar (inteiro): ";
   std::cin >> id;
 
   std::ifstream inFile("../db.json");
@@ -160,7 +160,7 @@ void ProductService::update()
       std::cin >> name;
       std::cout << "Nova descricao: ";
       std::cin >> description;
-      std::cout << "Novo peso: ";
+      std::cout << "Novo peso (inteiro): ";
       std::cin >> weigth;
       std::cout << "Nova unidade de medida: ";
       std::cin >> unit_measure;
@@ -193,7 +193,7 @@ void ProductService::update()
 void ProductService::deleteItem()
 {
   int id;
-  std::cout << "Informe o ID do produto que deseja remover: ";
+  std::cout << "Informe o ID do produto que deseja remover (inteiro): ";
   std::cin >> id;
 
   std::ifstream inFile("../db.json");
