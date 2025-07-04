@@ -71,7 +71,7 @@ void VendorView::call_menu_function() const
 
 void VendorView::pushVendor(Vendor i_vendor) { vendors.push_back(i_vendor);}
 
-Vendor VendorView::getVendor( ) const {return vendors;}
+const std::vector<Vendor>& VendorView::getVendors() const { return vendors; }
 
 void VendorView::createVendor( ) {
   std::string values[5];

@@ -15,7 +15,7 @@ public:
 
   // Add these declarations:
   void pushVendor(Vendor i_vendor);
-  Vendor getVendor() const;
+  const std::vector<Vendor>& getVendors() const;
   void createVendor();
 };
 
