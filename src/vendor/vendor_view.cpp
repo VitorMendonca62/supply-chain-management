@@ -37,7 +37,7 @@ void VendorView::print_menu() const
 
 void VendorView::call_menu_function() const
 {
-  int action;
+    int action = 0;
 
   while (action != 6)
   {
