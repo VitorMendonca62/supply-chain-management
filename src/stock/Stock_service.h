@@ -11,7 +11,7 @@
 #ifndef STOCK_SERVICE_H
 #define STOCK_SERVICE_H
 
-#include "../shared/Service_view.h"
+#include "../shared/Service.h"
 
 class StockService : public ServiceView
 {

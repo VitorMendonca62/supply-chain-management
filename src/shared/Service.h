@@ -1,5 +1,5 @@
 /******************************************************************************
- * Arquivo     : Service_view.h
+ * Arquivo     : Service.h
  * Autor       : Vitor Mendonça
  * Criado em   : 04/07/2025
  * Descrição   :
@@ -8,8 +8,8 @@
  * Projeto     : Projeto prático de EDOO
  ******************************************************************************/
 
-#ifndef SERVICE_VIEW_H
-#define SERVICE_VIEW_H
+#ifndef SERVICE_H
+#define SERVICE_H
 
 #include <iostream>
 #include <string>

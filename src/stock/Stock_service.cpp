@@ -39,7 +39,7 @@ void StockService::create()
 {
     int stock_id, product_id, quantity;
     std::string location, date;
-    std::cout << "Iniciando criacao de novo item de estoque...";
+    std::cout << "Iniciando criacao de novo item de estoque..." << std::endl;
     std::cout << "Informe o ID do estoque: ";
     std::cin >> stock_id;
     std::cout << "Informe o ID do produto: ";
@@ -59,7 +59,7 @@ void StockService::create()
     std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
         out_service();
         return;
     }
@@ -86,7 +86,7 @@ void StockService::getAll()
     std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
         out_service();
         return;
     }
@@ -125,13 +125,13 @@ void StockService::getAll()
 void StockService::getOne()
 {
     int stock_id;
-    std::cout << "Informe o ID do estoque que deseja visualizar:";
+    std::cout << "Informe o ID do estoque que deseja visualizar: ";
     std::cin >> stock_id;
 
     std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
         out_service();
         return;
     }
@@ -165,6 +165,8 @@ void StockService::getOne()
     if (!found)
     {
         std::cout << "Item de estoque nao encontrado." << std::endl;
+        out_service();
+        return;
     }
     out_service();
 }
@@ -177,13 +179,11 @@ void StockService::updateStockItemQuantity()
     int stock_id, new_quantity;
     std::cout << "Informe o ID do estoque que deseja atualizar a quantidade:";
     std::cin >> stock_id;
-    std::cout << "Informe a nova quantidade: ";
-    std::cin >> new_quantity;
 
     std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
         out_service();
         return;
     }
@@ -199,6 +199,9 @@ void StockService::updateStockItemQuantity()
         {
             if (item.value("stock_id", 0) == stock_id)
             {
+                std::cout << "Informe a nova quantidade: ";
+                std::cin >> new_quantity;
+
                 item["quantity"] = new_quantity;
                 found = true;
                 break;
@@ -208,8 +211,9 @@ void StockService::updateStockItemQuantity()
 
     if (!found)
     {
-
-        std::cout << "Item de estoque nao encontrado.";
+        std::cout << "Item de estoque nao encontrado." << std::endl;
+        out_service();
+        return;
     }
 
     std::ofstream outFile("../db.json");
@@ -225,14 +229,11 @@ void StockService::updateStockItemLocation()
     std::string new_location;
     std::cout << "Informe o ID do estoque que deseja atualizar a localizacao:";
     std::cin >> stock_id;
-    std::cout << "Informe a nova localizacao: ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::getline(std::cin, new_location);
 
     std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
         out_service();
         return;
     }
@@ -248,6 +249,9 @@ void StockService::updateStockItemLocation()
         {
             if (item.value("stock_id", 0) == stock_id)
             {
+                std::cout << "Informe a nova localizacao: ";
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::getline(std::cin, new_location);
                 item["location"] = new_location;
                 found = true;
                 break;
@@ -257,13 +261,15 @@ void StockService::updateStockItemLocation()
 
     if (!found)
     {
-        std::cout << "Item de estoque nao encontrado.";
+        std::cout << "Item de estoque nao encontrado." << std::endl;
+        out_service();
+        return;
     }
 
     std::ofstream outFile("../db.json");
     outFile << db.dump(4);
     outFile.close();
-    std::cout << "Localizacao atualizada com sucesso!";
+    std::cout << "Localizacao atualizada com sucesso!" << std::endl;
     out_service();
 }
 
@@ -273,14 +279,11 @@ void StockService::updateStockItemLastMovementDate()
     std::string new_date;
     std::cout << "Informe o ID do estoque que deseja atualizar a data da ultima movimentacao:";
     std::cin >> stock_id;
-    std::cout << "Informe a nova data (YYYY-MM-DD): ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::getline(std::cin, new_date);
 
     std::ifstream inFile("../db.json");
     if (!inFile.is_open())
     {
-        std::cout << "Nao foi possivel abrir o arquivo de estoque.";
+        std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
         out_service();
         return;
     }
@@ -296,6 +299,10 @@ void StockService::updateStockItemLastMovementDate()
         {
             if (item.value("stock_id", 0) == stock_id)
             {
+                std::cout << "Informe a nova data (YYYY-MM-DD): ";
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::getline(std::cin, new_date);
+
                 item["last_movement_date"] = new_date;
                 found = true;
                 break;
@@ -305,12 +312,14 @@ void StockService::updateStockItemLastMovementDate()
 
     if (!found)
     {
-        std::cout << "Item de estoque nao encontrado.";
+        std::cout << "Item de estoque nao encontrado." << std::endl;
+        out_service();
+        return;
     }
 
     std::ofstream outFile("../db.json");
     outFile << db.dump(4);
     outFile.close();
-    std::cout << "Data da ultima movimentacao atualizada com sucesso!";
+    std::cout << "Data da ultima movimentacao atualizada com sucesso!" << std::endl;
     out_service();
 }
