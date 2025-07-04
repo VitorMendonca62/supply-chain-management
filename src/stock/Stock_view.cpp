@@ -9,8 +9,8 @@
  *
  * Histórico de Modificações:
  * - 29/06/2025: Versão inicial (Vitor)
- * - 29/06/2025: Modificado para usar a classe Stock (Gemini)
- * - 29/06/2025: Adicionado menu para cada função de stock.cpp (Gemini)
+ * - 29/06/2025: Modificado para usar a classe Stock
+ * - 29/06/2025: Adicionado menu para cada função de stock.cpp
  ******************************************************************************/
 
 #include <iostream>
