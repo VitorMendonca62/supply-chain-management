@@ -37,7 +37,7 @@ public:
   // Exibe mensagem e aguarda ENTER antes de limpar a tela
   static void pause_and_clear()
   {
-    std::cout << "Aperte ENTER para exibir o menu (as mensagens acima serão apagadas)" << std::endl;
+    std::cout << "Aperte ENTER para exibir o menu (as mensagens acima serao apagadas)" << std::endl;
     wait_for_enter();
     clear();
   }

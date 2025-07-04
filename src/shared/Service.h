@@ -2,7 +2,7 @@
  * Arquivo     : Service.h
  * Autor       : Vitor Mendonça
  * Criado em   : 04/07/2025
- * Descrição   :
+ * Descriçao   :
  *   Define a interface para o menu de gerenciamento de serviços de estoque.
  *
  * Projeto     : Projeto prático de EDOO

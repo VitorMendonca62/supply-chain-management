@@ -2,12 +2,12 @@
  * Arquivo     : vendor_service.h
  * Autor       : Luís Moreira
  * Criado em   : 04/07/2025
- * Descrição   : Arquivo de header envolvendo a classe VendorService
+ * Descriçao   : Arquivo de header envolvendo a classe VendorService
  *
  * Projeto     : Projeto prático de EDOO
  *
  * Histórico de Modificações:
- *  - 04/07/2025: Versão inicial (Luís Moreira)
+ *  - 04/07/2025: Versao inicial (Luís Moreira)
  ******************************************************************************/
 
 #include <iostream>

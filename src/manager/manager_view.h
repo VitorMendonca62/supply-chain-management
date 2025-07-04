@@ -2,13 +2,13 @@
  * Arquivo     : Manager_view.h
  * Autor       : Vitor Mendonça
  * Criado em   : 29/06/2025
- * Descrição   :
+ * Descriçao   :
  *   Este arquivo define, a partir de menu_view.h, os atributos e métodos
  *
  * Projeto     : Projeto prático de EDOO
  *
  * Histórico de Modificações:
- *  - 29/06/2025: Versão inicial (Vitor)
+ *  - 29/06/2025: Versao inicial (Vitor)
  ******************************************************************************/
 
 #ifndef MANAGER_VIEW_H

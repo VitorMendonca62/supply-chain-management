@@ -2,7 +2,7 @@
 * Arquivo     : stock.h
  * Autor       : Arthur Marinho
  * Criado em   : 17/06/2025
- * Descrição   : Arquivo de cabeçalho para a classe Estoque (versão refatorada).
+ * Descriçao   : Arquivo de cabeçalho para a classe Estoque (versao refatorada).
  * Representa uma linha de inventário (um produto em um local).
  ******************************************************************************/
 

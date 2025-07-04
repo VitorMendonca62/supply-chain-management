@@ -2,12 +2,12 @@
  * Arquivo     : vendor.h
  * Autor       : Luís Moreira
  * Criado em   : 15/06/2025
- * Descrição   : Criação do arquivo header para a classe Vendor, referente ao fornecedor
+ * Descriçao   : Criaçao do arquivo header para a classe Vendor, referente ao fornecedor
  * 
  * Projeto     : Projeto prático de EDOO
  * 
  * Histórico de Modificações:
- *  - 15/06/2025: Versão inicial (Luis)
+ *  - 15/06/2025: Versao inicial (Luis)
  *  - 04/07/2025: Ajustes para armazenamento de dados (Luis)
  ******************************************************************************/
 

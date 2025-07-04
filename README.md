@@ -54,13 +54,13 @@ O projeto está organizado da seguinte forma:
 
     ```bash
     cd src
-    g++ -std=c++11 -o main main.cpp system/system.cpp user/user.cpp manager/manager.cpp employee/employee.cpp product/Product.cpp stock/stock.cpp vendor/vendor.cpp product/Product_view.cpp vendor/vendor_view.cpp stock/Stock_view.cpp employee/employee_view.cpp manager/manager_view.cpp -lssl -lcrypto
+    g++ main.cpp system/System.cpp manager/manager_view.cpp employee/employee_view.cpp vendor/vendor_view.cpp stock/stock_view.cpp product/Product_view.cpp vendor/vendor.cpp stock/stock.cpp stock/Stock_service.cpp vendor/vendor_service.cpp  product/Product_service.cpp product/product.cpp -o main
     ```
 
 3.  **Execute o programa:**
 
     ```bash
-    ./main
+    ./main.exe
     ```
 
 ## Conceitos de EDOO Aplicados

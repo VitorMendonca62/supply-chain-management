@@ -2,7 +2,7 @@
  * Arquivo     : Stock_service.h
  * Autor       : Vitor Mendonça
  * Criado em   : 04/07/2025
- * Descrição   :
+ * Descriçao   :
  *   Implementa a interface Service para operações de estoque.
  *
  * Projeto     : Projeto prático de EDOO
