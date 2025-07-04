@@ -13,6 +13,10 @@
 #include <iostream>
 #include <vector>
 
+#include "../include/json.hpp"
+using json = nlohmann::json;
+
+
 class Stock {
 private:
     int stock_id;
@@ -41,13 +45,6 @@ public:
     void setStockLocation(const std::string& new_location);
     void setLastMovementDate(const std::string& new_date);
 
-    // --- Static methods for stock management ---
-    static void createStockItem();
-    static void listAllStockItems();
-    static void viewStockItemDetails();
-    static void updateStockItemQuantity();
-    static void updateStockItemLocation();
-    static void updateStockItemLastMovementDate();
+    json toJson() const;
 };
-
-#endif // STOCK_H
+#endif 

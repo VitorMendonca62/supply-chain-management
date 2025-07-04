@@ -10,14 +10,12 @@
  *  - 15/06/2025: Versão inicial (Luis)
  ******************************************************************************/
 
- #define CPPHTTPLIB_OPENSSL_SUPPORT
- #include "httplib.h"
  #include "vendor.h"
  #include <iostream>
  
  bool Vendor::init(const std::string& i_name, const std::string& i_cnpj, const std::string& i_tel, const std::string& i_mail, const std::string& i_cep) {
      if (i_name.size() < 1) return false;
-     if (i_cep.size() < 1 || i_cep.size() > 8 || (!this->verifyCep(i_cep))) return false;
+     if (i_cep.size() < 1 || i_cep.size() > 8) return false;
  
      name = i_name;
      cnpj = i_cnpj;
@@ -26,13 +24,6 @@
      cep = i_cep;
  
      return true;
- }
- 
- bool Vendor::verifyCep(const std::string& i_cep) {
-     httplib::Client cli("https://brasilapi.com.br");
-     auto response = cli.Get("/api/cep/v2/" + i_cep);
- 
-     return (response && response->status == 200);
  }
  
  // Getters 

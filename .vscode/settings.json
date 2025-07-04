@@ -57,6 +57,8 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
+    "*.embeddedhtml": "html",
+    "*.js": "javascript",
     "array": "cpp",
     "atomic": "cpp",
     "bit": "cpp",
@@ -118,6 +120,11 @@
     "streambuf": "cpp",
     "thread": "cpp",
     "cinttypes": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "chrono": "cpp",
+    "fstream": "cpp",
+    "forward_list": "cpp",
+    "any": "cpp",
+    "valarray": "cpp"
   }
 }

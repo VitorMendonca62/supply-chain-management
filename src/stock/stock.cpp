@@ -8,9 +8,9 @@
 #include "stock.h"
 #include <iostream>
 #include <limits>
+#include "../include/json.hpp"
 
-// Initialize the static stock_items vector
-std::vector<Stock> Stock::stock_items;
+using json = nlohmann::json;
 
 // --- Constructor Definition ---
 Stock::Stock(int stockId, int productId, int qty, const std::string& location, const std::string& date)
@@ -62,123 +62,12 @@ void Stock::setLastMovementDate(const std::string& new_date) {
     last_movement_date = new_date;
 }
 
-// --- Static methods for stock management ---
-void Stock::createStockItem() {
-    int stock_id, product_id, quantity;
-    std::string location, date;
-    std::cout << "Iniciando criação de novo item de estoque...\n";
-    std::cout << "Informe o ID do estoque: ";
-    std::cin >> stock_id;
-    std::cout << "Informe o ID do produto: ";
-    std::cin >> product_id;
-    std::cout << "Informe a quantidade: ";
-    std::cin >> quantity;
-    std::cout << "Informe a localização: ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::getline(std::cin, location);
-    std::cout << "Informe a data da última movimentação (YYYY-MM-DD): ";
-    std::getline(std::cin, date);
-
-    stock_items.emplace_back(stock_id, product_id, quantity, location, date);
-    std::cout << "Item de estoque criado com sucesso!\n";
-}
-
-void Stock::listAllStockItems() {
-    std::cout << "Exibindo estoque atual...\n";
-    if (stock_items.empty()) {
-        std::cout << "Nenhum item em estoque.\n";
-    } else {
-        for (const auto& item : stock_items) {
-            std::cout << "ID do Estoque: " << item.getStockId()
-                      << ", ID do Produto: " << item.getProductId()
-                      << ", Quantidade: " << item.getQuantity()
-                      << ", Localização: " << item.getStockLocation()
-                      << ", Última Movimentação: " << item.getLastMovementDate() << std::endl;
-        }
-    }
-}
-
-void Stock::viewStockItemDetails() {
-    int stock_id;
-    std::cout << "Informe o ID do estoque que deseja visualizar:\n";
-    std::cin >> stock_id;
-    bool found = false;
-    for (const auto& item : stock_items) {
-        if (item.getStockId() == stock_id) {
-            std::cout << "Detalhes do item de estoque:\n";
-            std::cout << "  ID do Produto: " << item.getProductId() << std::endl;
-            std::cout << "  Quantidade: " << item.getQuantity() << std::endl;
-            std::cout << "  Localização: " << item.getStockLocation() << std::endl;
-            std::cout << "  Última Movimentação: " << item.getLastMovementDate() << std::endl;
-            found = true;
-            break;
-        }
-    }
-    if (!found) {
-        std::cout << "Item de estoque não encontrado.\n";
-    }
-}
-
-void Stock::updateStockItemQuantity() {
-    int stock_id, new_quantity;
-    std::cout << "Informe o ID do estoque que deseja atualizar a quantidade:\n";
-    std::cin >> stock_id;
-    std::cout << "Informe a nova quantidade: ";
-    std::cin >> new_quantity;
-    bool found = false;
-    for (auto& item : stock_items) {
-        if (item.getStockId() == stock_id) {
-            item.setQuantity(new_quantity);
-            std::cout << "Quantidade atualizada com sucesso!\n";
-            found = true;
-            break;
-        }
-    }
-    if (!found) {
-        std::cout << "Item de estoque não encontrado.\n";
-    }
-}
-
-void Stock::updateStockItemLocation() {
-    int stock_id;
-    std::string new_location;
-    std::cout << "Informe o ID do estoque que deseja atualizar a localização:\n";
-    std::cin >> stock_id;
-    std::cout << "Informe a nova localização: ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::getline(std::cin, new_location);
-    bool found = false;
-    for (auto& item : stock_items) {
-        if (item.getStockId() == stock_id) {
-            item.setStockLocation(new_location);
-            std::cout << "Localização atualizada com sucesso!\n";
-            found = true;
-            break;
-        }
-    }
-    if (!found) {
-        std::cout << "Item de estoque não encontrado.\n";
-    }
-}
-
-void Stock::updateStockItemLastMovementDate() {
-    int stock_id;
-    std::string new_date;
-    std::cout << "Informe o ID do estoque que deseja atualizar a data da última movimentação:\n";
-    std::cin >> stock_id;
-    std::cout << "Informe a nova data (YYYY-MM-DD): ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::getline(std::cin, new_date);
-    bool found = false;
-    for (auto& item : stock_items) {
-        if (item.getStockId() == stock_id) {
-            item.setLastMovementDate(new_date);
-            std::cout << "Data da última movimentação atualizada com sucesso!\n";
-            found = true;
-            break;
-        }
-    }
-    if (!found) {
-        std::cout << "Item de estoque não encontrado.\n";
-    }
+json Stock::toJson() const {
+    return json{
+        {"stock_id", stock_id},
+        {"product_id", product_id},
+        {"quantity", quantity},
+        {"location", stock_location},
+        {"last_movement_date", last_movement_date}
+    };
 }

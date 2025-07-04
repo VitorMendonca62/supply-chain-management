@@ -19,6 +19,9 @@
 #include <limits>
 #include "stock_view.h"
 #include "stock.h"
+#include "Stock_service.h"
+
+StockService* service = new StockService();
 
 void StockView::print_menu() const
 {
@@ -38,29 +41,29 @@ void StockView::print_menu() const
 void StockView::call_menu_function() const {
   int action; // 'action' was passed in, now we declare it inside
 
-  while (action != 6)
+  while (action != 7)
   {
     print_menu();
     std::cin >> action;
     switch (action)
     {
       case 1:
-        Stock::createStockItem();
+        service->create();
         break;
       case 2:
-        Stock::listAllStockItems();
+        service->getAll();
         break;
       case 3:
-        Stock::viewStockItemDetails();
+        service->getOne();
         break;
       case 4:
-        Stock::updateStockItemQuantity();
+        service->updateStockItemQuantity();
         break;
       case 5:
-        Stock::updateStockItemLocation();
+        service->updateStockItemLocation();
         break;
       case 6:
-        Stock::updateStockItemLastMovementDate();
+        service->updateStockItemLastMovementDate();
         break;
       case 7:
         std::cout << "Retornando ao menu principal...\n";

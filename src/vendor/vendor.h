@@ -23,7 +23,6 @@
          std::string email;
          std::string cep; // Deve ter no máximo 8 caracteres
  
-         bool verifyCep(const std::string&);
          bool verifyCnpj(const std::string&); // Implementar ainda
  
      public:
