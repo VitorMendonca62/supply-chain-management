@@ -80,7 +80,6 @@ void ProductService::getAll()
               << "\nUnidade de medida: " << item.value("unit_measure", "")
               << "\n----------------------------\n";
     std::cout << "Aperte ENTER para o proximo item" << std::endl;
-
     ConsoleUtils::wait_for_enter();
   }
 
