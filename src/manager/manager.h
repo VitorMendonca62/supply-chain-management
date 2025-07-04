@@ -12,7 +12,7 @@
 #ifndef MANAGER_H
 #define MANAGER_H
  
-#include "user/user.h"
+#include "../user/user.h"
 #include <iostream>
 
 using namespace std;
