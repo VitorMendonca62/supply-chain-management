@@ -15,9 +15,9 @@
 #include <string>
 #include <vector>
 
-class ServiceView {
+class Service {
 public:
-    ServiceView() = default;
+    Service() = default;
 
     virtual void create() = 0;
 
@@ -29,7 +29,7 @@ public:
     
     virtual void deleteItem() = 0;
 
-    virtual ~ServiceView() = default;
+    virtual ~Service() = default;
 };
 
 #endif

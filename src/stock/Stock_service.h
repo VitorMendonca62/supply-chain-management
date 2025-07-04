@@ -3,7 +3,7 @@
  * Autor       : Vitor Mendonça
  * Criado em   : 04/07/2025
  * Descrição   :
- *   Implementa a interface ServiceView para operações de estoque.
+ *   Implementa a interface Service para operações de estoque.
  *
  * Projeto     : Projeto prático de EDOO
  ******************************************************************************/
@@ -13,7 +13,7 @@
 
 #include "../shared/Service.h"
 
-class StockService : public ServiceView
+class StockService : public Service
 {
 public:
   StockService() = default;

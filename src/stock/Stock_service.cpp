@@ -5,35 +5,9 @@
 #include "../include/json.hpp"
 #include <fstream>
 #include <conio.h>
+#include "../shared/Console_utils.h"
+
 using json = nlohmann::json;
-
-void enter_for_out()
-{
-#ifdef _WIN32
-    _getch();
-
-#else
-    std::cin.ignore();
-    std::cin.get();
-#endif
-}
-
-void clear_console()
-{
-#ifdef _WIN32
-    std::system("cls");
-
-#else
-    std::system("clear");
-#endif
-}
-
-void out_service()
-{
-    std::cout << "Aperte ENTER para exibir o menu ( As mensagens acima serao apagadas)" << std::endl;
-    enter_for_out();
-    clear_console();
-}
 
 void StockService::create()
 {
@@ -60,7 +34,7 @@ void StockService::create()
     if (!inFile.is_open())
     {
         std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
 
@@ -77,7 +51,7 @@ void StockService::create()
 
     std::cout << "Item de estoque criado com sucesso!" << std::endl;
 
-    out_service();
+    ConsoleUtils::pause_and_clear();
 }
 
 void StockService::getAll()
@@ -87,7 +61,7 @@ void StockService::getAll()
     if (!inFile.is_open())
     {
         std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
 
@@ -98,7 +72,7 @@ void StockService::getAll()
     if (!db.contains("stock") || db["stock"].empty())
     {
         std::cout << "Nenhum item em estoque." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
     for (const auto &item : db["stock"])
@@ -116,10 +90,10 @@ void StockService::getAll()
             << "================================="
             << std::endl;
         std::cout << "Aperte ENTER para o proximo item" << std::endl;
-        enter_for_out();
+        ConsoleUtils::wait_for_enter();
     }
     std::cout << "Todos os itens foram listados" << std::endl;
-    out_service();
+    ConsoleUtils::pause_and_clear();
 }
 
 void StockService::getOne()
@@ -132,7 +106,7 @@ void StockService::getOne()
     if (!inFile.is_open())
     {
         std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
 
@@ -165,10 +139,10 @@ void StockService::getOne()
     if (!found)
     {
         std::cout << "Item de estoque nao encontrado." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
-    out_service();
+    ConsoleUtils::pause_and_clear();
 }
 
 void StockService::deleteItem() {}
@@ -184,7 +158,7 @@ void StockService::updateStockItemQuantity()
     if (!inFile.is_open())
     {
         std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
 
@@ -212,7 +186,7 @@ void StockService::updateStockItemQuantity()
     if (!found)
     {
         std::cout << "Item de estoque nao encontrado." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
 
@@ -220,7 +194,7 @@ void StockService::updateStockItemQuantity()
     outFile << db.dump(4);
     outFile.close();
     std::cout << "Quantidade atualizada com sucesso!" << std::endl;
-    out_service();
+    ConsoleUtils::pause_and_clear();
 }
 
 void StockService::updateStockItemLocation()
@@ -234,7 +208,7 @@ void StockService::updateStockItemLocation()
     if (!inFile.is_open())
     {
         std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
 
@@ -262,7 +236,7 @@ void StockService::updateStockItemLocation()
     if (!found)
     {
         std::cout << "Item de estoque nao encontrado." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
 
@@ -270,7 +244,7 @@ void StockService::updateStockItemLocation()
     outFile << db.dump(4);
     outFile.close();
     std::cout << "Localizacao atualizada com sucesso!" << std::endl;
-    out_service();
+    ConsoleUtils::pause_and_clear();
 }
 
 void StockService::updateStockItemLastMovementDate()
@@ -284,7 +258,7 @@ void StockService::updateStockItemLastMovementDate()
     if (!inFile.is_open())
     {
         std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
-        out_service();
+        ConsoleUtils::pause_and_clear();
         return;
     }
 
@@ -313,13 +287,12 @@ void StockService::updateStockItemLastMovementDate()
     if (!found)
     {
         std::cout << "Item de estoque nao encontrado." << std::endl;
-        out_service();
-        return;
+        ConsoleUtils::pause_and_clear(); return;
     }
 
     std::ofstream outFile("../db.json");
     outFile << db.dump(4);
     outFile.close();
     std::cout << "Data da ultima movimentacao atualizada com sucesso!" << std::endl;
-    out_service();
+    ConsoleUtils::pause_and_clear();
 }

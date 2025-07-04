@@ -21,7 +21,7 @@
 #include "stock.h"
 #include "Stock_service.h"
 
-StockService* service = new StockService();
+StockService* stock_service = new StockService();
 
 void StockView::print_menu() const
 {
@@ -48,22 +48,22 @@ void StockView::call_menu_function() const {
     switch (action)
     {
       case 1:
-        service->create();
+        stock_service->create();
         break;
       case 2:
-        service->getAll();
+        stock_service->getAll();
         break;
       case 3:
-        service->getOne();
+        stock_service->getOne();
         break;
       case 4:
-        service->updateStockItemQuantity();
+        stock_service->updateStockItemQuantity();
         break;
       case 5:
-        service->updateStockItemLocation();
+        stock_service->updateStockItemLocation();
         break;
       case 6:
-        service->updateStockItemLastMovementDate();
+        stock_service->updateStockItemLastMovementDate();
         break;
       case 7:
         std::cout << "Retornando ao menu principal...\n";

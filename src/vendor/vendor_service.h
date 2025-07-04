@@ -15,22 +15,23 @@
 #ifndef VENDOR_SERVICE_H
 #define VENDOR_SERVICE_H
 
-#include "../shared/Service_view.h"
+#include "../shared/Service.h"
 
-class VendorService :: public ServiceView {
+class VendorService : public Service
+{
+public:
   VendorService() = default;
 
   void create() override;
   void getAll() override;
   void getOne() override;
-  // void update() override;
-  // void deleteVendor() override;
-  
-  void updatePhoneNumberVendor();
-  void updateEmailVendor();  
-  
-  ~VendorService() override = default;       
-}
+  void update() override;
+  void deleteItem() override;
 
+  void updatePhoneNumberVendor();
+  void updateEmailVendor();
+
+  ~VendorService() override = default;
+};
 
 #endif

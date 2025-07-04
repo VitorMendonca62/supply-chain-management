@@ -15,6 +15,7 @@
 #include "vendor_view.h"
 #include "vendor.h"
 #include "vendor_service.h"
+#include "../shared/Console_utils.h"
 
 VendorService* service = new VendorService();
 
@@ -46,30 +47,29 @@ void VendorView::call_menu_function() const
     switch (action)
     {
     case 1:
-      std::cout << "Iniciando cadastro de novo fornecedor...\n";
       service->create( );
       break;
     case 2:
-      std::cout << "Listando todos os fornecedores...\n";
       service->getAll( );
       break;
     case 3:
-      std::cout << "Informe o ID do fornecedor que deseja buscar:\n";
       service->getOne( );
       break;
-    case 4:
-      std::cout << "Informe o ID do fornecedor que deseja editar:\n";
+      case 4:
+      service->updateEmailVendor( );
       // Função para editar email de um fornecedor
       break;
-    case 5:
-      std::cout << "Informe o ID do fornecedor que deseja remover:\n";
+      case 5:
+      service->updatePhoneNumberVendor( );
       // Função para editar telefone de um fornecedor
       break;
     case 6:
       std::cout << "Retornando ao menu principal...\n";
+      ConsoleUtils::clear();
       break;      
-    default:
+      default:
       std::cout << "Opção inválida. Tente novamente.\n";
+      print_menu();
     }
   }
 }

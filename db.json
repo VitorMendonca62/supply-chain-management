@@ -7,7 +7,29 @@
             "product_id": 2,
             "quantity": 4,
             "stock_id": 2
+        },
+        {
+            "last_movement_date": "1",
+            "location": "1",
+            "product_id": 1,
+            "quantity": 1,
+            "stock_id": 1
         }
     ],
-    "vendor": []
+    "vendor": [
+        {
+            "cep": "1",
+            "cnpj": "1",
+            "email": "dwadwadawdwadwadwadwa",
+            "name": "1",
+            "phone_number": "414"
+        },
+        {
+            "cep": "12",
+            "cnpj": "12",
+            "email": "",
+            "name": "12",
+            "phone_number": "12"
+        }
+    ]
 }

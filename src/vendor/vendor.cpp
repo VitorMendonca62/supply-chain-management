@@ -3,9 +3,9 @@
  * Autor       : Luís Moreira
  * Criado em   : 15/06/2025
  * Descrição   : Criação do arquivo cpp para a classe Vendor, referente ao fornecedor
- * 
+ *
  * Projeto     : Projeto prático de EDOO
- * 
+ *
  * Histórico de Modificações:
  *  - 15/06/2025: Versão inicial (Luis)
  *  - 04/07/2025: Ajustes para armazenamento de informações no JSON (Luis)
@@ -41,19 +41,19 @@ using json = nlohmann::json;
  std::string Vendor::getCep() const { return cep; }
  
 // Setters
- void Vendor::setName(const std::string& newName) { name = newName; }
- void Vendor::setCnpj(const std::string& newCnpj) { cnpj = newCnpj; }
- void Vendor::setPhoneNumber(const std::string& newPhone) { phone_number = newPhone; }
- void Vendor::setEmail(const std::string& newEmail) { email = newEmail; }
- void Vendor::setCep(const std::string& newCep) { cep = newCep; }
+void Vendor::setName(const std::string &newName) { name = newName; }
+void Vendor::setCnpj(const std::string &newCnpj) { cnpj = newCnpj; }
+void Vendor::setPhoneNumber(const std::string &newPhone) { phone_number = newPhone; }
+void Vendor::setEmail(const std::string &newEmail) { email = newEmail; }
+void Vendor::setCep(const std::string &newCep) { cep = newCep; }
 
 // Método do json para retornar os dados do Fornecedor
-json Vendor::toJson() const {
+json Vendor::toJson() const
+{
     return json{
         {"name", name},
         {"cnpj", cnpj},
         {"phone_number", phone_number},
         {"email", email},
-        {"cep", cep}
-    };
-} 
+        {"cep", cep}};
+}

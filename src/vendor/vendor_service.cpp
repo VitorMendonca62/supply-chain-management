@@ -16,168 +16,151 @@
 #include "../include/json.hpp"
 #include <fstream>
 #include <conio.h>
-
+#include "../shared/Console_utils.h"
 
 using json = nlohmann::json;
 
-// Métodos em comum para formatação do conteúdo em terminal
-void enter_for_out()
-{
-#ifdef _WIN32
-    _getch();
-
-#else
-    std::cin.ignore();
-    std::cin.get();
-#endif
-}
-
-void clear_console()
-{
-#ifdef _WIN32
-    std::system("cls");
-
-#else
-    std::system("clear");
-#endif
-}
-
-void out_service()
-{
-    std::cout << "Aperte ENTER para exibir o menu ( As mensagens acima serao apagadas)" << std::endl;
-    enter_for_out();
-    clear_console();
-}
-
 void VendorService::create()
 {
-    std::string name, cnpj, phone_number, email, cep;
-    std::cout << "Iniciando criacao de novo fornecedor...";
-    std::cout << "Informe o nome do Fornecedor: ";
-    std::cin >> name;
-    std::cout << "Informe o CNPJ do Fornecedor: ";
-    std::cin >> cnpj;
-    std::cout << "Informe o número de telefone do Fornecedor: ";
-    std::cin >> phone_number;
-    std::cout << "Informe o CEP do Fornecedor: ";
-    std::cin >> cep;
+  std::string name, cnpj, phone_number, email, cep;
+  std::cout << "Iniciando criacao de novo fornecedor..." << std::endl;
+  std::cout << "Informe o nome do Fornecedor: ";
+  std::cin >> name;
+  std::cout << "Informe o CNPJ do Fornecedor: ";
+  std::cin >> cnpj;
+  std::cout << "Informe o número de telefone do Fornecedor: ";
+  std::cin >> phone_number;
+  std::cout << "Informe o CEP do Fornecedor: ";
+  std::cin >> cep;
+  std::cout << "Informe o email do Fornecedor: ";
+  std::cin >> email;
 
-    Vendor newVendor(name, cnpj, phone_number, email, cep);
+  Vendor newVendor;
+  const bool condition = newVendor.init(name, cnpj, phone_number, email, cep);
 
-    json jsonObj = newVendor.toJson();
+  if (!condition)
+  {
+    std::cout << "Nao foi possivel criar usuário. Erro na validação" << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
 
-    std::ifstream inFile("../db.json");
-    if (!inFile.is_open())
-    {
-        std::cout << "Nao foi possivel abrir o arquivo JSON.";
-        out_service();
-        return;
-    }
+  json jsonObj = newVendor.toJson();
 
-    json db;
+  std::ifstream inFile("../db.json");
+  if (!inFile.is_open())
+  {
+    std::cout << "Nao foi possivel abrir o arquivo JSON." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
 
-    inFile >> db;
-    inFile.close();
+  json db;
 
-    db["vendor"].push_back(jsonObj);
+  inFile >> db;
+  inFile.close();
 
-    std::ofstream outFile("../db.json");
-    outFile << db.dump(4);
-    outFile.close();
+  db["vendor"].push_back(jsonObj);
 
-    std::cout << "Fornecedor criado com sucesso!" << std::endl;
+  std::ofstream outFile("../db.json");
+  outFile << db.dump(4);
+  outFile.close();
 
-    out_service();
+  std::cout << "Fornecedor criado com sucesso!" << std::endl;
+
+  ConsoleUtils::pause_and_clear();
 }
 
 void VendorService::getAll()
 {
-    std::cout << "Exibindo a lista de fornecedores..." << std::endl;
-    std::ifstream inFile("../db.json");
-    if (!inFile.is_open())
-    {
-        std::cout << "Nao foi possivel abrir o arquivo JSON.";
-        out_service();
-        return;
-    }
+  std::cout << "Exibindo a lista de fornecedores..." << std::endl;
+  std::ifstream inFile("../db.json");
+  if (!inFile.is_open())
+  {
+    std::cout << "Nao foi possivel abrir o arquivo JSON." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
 
-    json db;
-    inFile >> db;
-    inFile.close();
+  json db;
+  inFile >> db;
+  inFile.close();
 
-    if (!db.contains("vendor") || db["vendor"].empty())
-    {
-        std::cout << "Nenhum Fornecedor criado." << std::endl;
-        out_service();
-        return;
-    }
-    for (const auto &item : db["vendor"])
-    {
-        std::cout
-            << "================================="
-            << std::endl
-            << "   Nome: " << item.value("name", "")
-            << std::endl
-            << "   CNPJ: " << item.value("cnpj", "")
-            << std::endl
-            << "   Telefone: " << item.value("phone_number", "")
-            << std::endl
-            << "   Email " << item.value("email", "") << std::endl
-            << "   CEP: " << item.value("cep", "") << std::endl
-            << "================================="
-            << std::endl;
-        std::cout << "Aperte ENTER para o proximo Fornecedor" << std::endl;
-        enter_for_out();
-    }
-    std::cout << "Todos os Fornecedores foram listados" << std::endl;
-    out_service();
+  if (!db.contains("vendor") || db["vendor"].empty())
+  {
+    std::cout << "Nenhum Fornecedor criado." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
+  for (const auto &item : db["vendor"])
+  {
+    std::cout
+        << "================================="
+        << std::endl
+        << "   Nome: " << item.value("name", "")
+        << std::endl
+        << "   CNPJ: " << item.value("cnpj", "")
+        << std::endl
+        << "   Telefone: " << item.value("phone_number", "")
+        << std::endl
+        << "   Email " << item.value("email", "") << std::endl
+        << "   CEP: " << item.value("cep", "") << std::endl
+        << "================================="
+        << std::endl;
+    std::cout << "Aperte ENTER para o proximo Fornecedor" << std::endl;
+    ConsoleUtils::wait_for_enter();
+  }
+  std::cout << "Todos os Fornecedores foram listados" << std::endl;
+  ConsoleUtils::pause_and_clear();
 }
 
 void VendorService::getOne()
 {
-    std::string vendor_cnpj;
-    std::cout << "Informe o CNPJ do Fornecedor que deseja visualizar:";
-    std::cin >> vendor_cnpj;
+  std::string vendor_cnpj;
+  std::cout << "Informe o CNPJ do Fornecedor que deseja visualizar:";
+  std::cin >> vendor_cnpj;
 
-    std::ifstream inFile("../db.json");
-    if (!inFile.is_open())
-    {
-        std::cout << "Nao foi possivel abrir o arquivo JSON.";
-        out_service();
-        return;
-    }
+  std::ifstream inFile("../db.json");
+  if (!inFile.is_open())
+  {
+    std::cout << "Nao foi possivel abrir o arquivo JSON." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
 
-    json db;
-    inFile >> db;
-    inFile.close();
+  json db;
+  inFile >> db;
+  inFile.close();
 
-    bool found = false;
-    if (db.contains("vendor"))
+  bool found = false;
+  if (db.contains("vendor"))
+  {
+    for (const auto &item : db["vendor"])
     {
-        for (const auto &item : db["vendor"])
-        {
-            if (item.value("cnpj", "") == vendor_cnpj)
-            {
-                std::cout << "Detalhes do Fornecedor:"
-                          << std::endl
-                          << "   Nome: " << item.value("name", "")
-                          << std::endl
-                          << "   CNPJ: " << item.value("cnpj", "")
-                          << std::endl
-                          << "   Telefone: " << item.value("phone_number", "")
-                          << std::endl
-                          << "   Email " << item.value("email", "") << std::endl
-                          << "   CEP: " << item.value("cep", "") << std::endl
-                found = true;
-                break;
-            }
-        }
+      if (item.value("cnpj", "") == vendor_cnpj)
+      {
+        std::cout << "Detalhes do Fornecedor:"
+                  << std::endl
+                  << "   Nome: " << item.value("name", "")
+                  << std::endl
+                  << "   CNPJ: " << item.value("cnpj", "")
+                  << std::endl
+                  << "   Telefone: " << item.value("phone_number", "")
+                  << std::endl
+                  << "   Email " << item.value("email", "") << std::endl
+                  << "   CEP: " << item.value("cep", "") << std::endl;
+        found = true;
+        break;
+      }
     }
-    if (!found)
-    {
-        std::cout << "Fornecedor nao encontrado." << std::endl;
-    }
-    out_service();
+  }
+  if (!found)
+  {
+    std::cout << "Fornecedor nao encontrado." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
+  ConsoleUtils::pause_and_clear();
 }
 
 // void VendorService::deleteItem() {}
@@ -185,95 +168,102 @@ void VendorService::getOne()
 
 void VendorService::updatePhoneNumberVendor()
 {
-    std::string cnpj_vendor, phone_number; 
-    std::cout << "Informe o CNPJ do Fornecedor que deseja atualizar o número de telefone:";
-    std::cin >> cnpj_vendor;
-    std::cout << "Informe o novo número: ";
-    std::cin >> phone_number
+  std::string cnpj_vendor, phone_number;
+  std::cout << "Informe o CNPJ do Fornecedor que deseja atualizar o número de telefone:";
+  std::cin >> cnpj_vendor;
 
-    std::ifstream inFile("../db.json");
-    if (!inFile.is_open())
+  std::ifstream inFile("../db.json");
+  if (!inFile.is_open())
+  {
+    std::cout << "Nao foi possivel abrir o arquivo JSON." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
+
+  json db;
+  inFile >> db;
+  inFile.close();
+
+  bool found = false;
+  if (db.contains("vendor"))
+  {
+    for (auto &item : db["vendor"])
     {
-        std::cout << "Nao foi possivel abrir o arquivo JSON.";
-        out_service();
-        return;
+      if (item.value("cnpj", "") == cnpj_vendor)
+      {
+        std::cout << "Informe o novo número: ";
+        std::cin >> phone_number;
+        item["phone_number"] = phone_number;
+        found = true;
+        break;
+      }
     }
+  }
 
-    json db;
-    inFile >> db;
-    inFile.close();
+  if (!found)
+  {
 
-    bool found = false;
-    if (db.contains("vendor"))
-    {
-        for (auto &item : db["vendor"])
-        {
-            if (item.value("cnpj", "") == cnpj_vendor)
-            {
-                item["phone_number"] = phone_number;
-                found = true;
-                break;
-            }
-        }
-    }
+    std::cout << "Fornecedor nao encontrado." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
 
-    if (!found)
-    {
-
-        std::cout << "Fornecedor nao encontrado.";
-    }
-
-    std::ofstream outFile("../db.json");
-    outFile << db.dump(4);
-    outFile.close();
-    std::cout << "Número de telefone atualizada com sucesso!" << std::endl;
-    out_service();
+  std::ofstream outFile("../db.json");
+  outFile << db.dump(4);
+  outFile.close();
+  std::cout << "Número de telefone atualizada com sucesso!" << std::endl;
+  ConsoleUtils::pause_and_clear();
 }
+
+void VendorService::deleteItem() {}
+void VendorService::update() {}
 
 void VendorService::updateEmailVendor()
 {
-    int stock_id;
-    std::string new_location;
-    std::string cnpj_vendor, email;
-    std::cout << "Informe o CNPJ do Fornecedor que deseja atualizar o email:";
-    std::cin >> cnpj_vendor;
-    std::cout << "Informe o endereço de email: ";
-    std::cin >> email;
+  int stock_id;
+  std::string new_location;
+  std::string cnpj_vendor, email;
+  std::cout << "Informe o CNPJ do Fornecedor que deseja atualizar o email:";
+  std::cin >> cnpj_vendor;
 
-    std::ifstream inFile("../db.json");
-    if (!inFile.is_open())
+  std::ifstream inFile("../db.json");
+  if (!inFile.is_open())
+  {
+    std::cout << "Nao foi possivel abrir o arquivo JSON." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
+
+  json db;
+  inFile >> db;
+  inFile.close();
+
+  bool found = false;
+  if (db.contains("vendor"))
+  {
+    for (auto &item : db["vendor"])
     {
-        std::cout << "Nao foi possivel abrir o arquivo JSON.";
-        out_service();
-        return;
+      if (item.value("cnpj", "") == cnpj_vendor)
+      {
+        std::cout << "Informe o endereço de email: ";
+        std::cin >> email;
+        item["email"] = email;
+        found = true;
+        break;
+      }
     }
+  }
 
-    json db;
-    inFile >> db;
-    inFile.close();
+  if (!found)
+  {
+    std::cout << "Fornecedor nao encontrado." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
 
-    bool found = false;
-    if (db.contains("vendor"))
-    {
-        for (auto &item : db["vendor"])
-        {
-            if (item.value("cnpj", "") == cnpj_vendor)
-            {
-                item["email"] = email;
-                found = true;
-                break;
-            }
-        }
-    }
-
-    if (!found)
-    {
-        std::cout << "Fornecedor nao encontrado.";
-    }
-
-    std::ofstream outFile("../db.json");
-    outFile << db.dump(4);
-    outFile.close();
-    std::cout << "Endereço de email atualizado com sucesso!";
-    out_service();
+  std::ofstream outFile("../db.json");
+  outFile << db.dump(4);
+  outFile.close();
+  std::cout << "Endereço de email atualizado com sucesso!" << std::endl;
+  ConsoleUtils::pause_and_clear();
 }
