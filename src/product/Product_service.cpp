@@ -36,7 +36,7 @@ void ProductService::create()
     ConsoleUtils::pause_and_clear();
     return;
   }
-  
+
   json db;
   inFile >> db;
   inFile.close();
@@ -79,6 +79,8 @@ void ProductService::getAll()
               << "\nPeso: " << item.value("weigth", 0)
               << "\nUnidade de medida: " << item.value("unit_measure", "")
               << "\n----------------------------\n";
+    std::cout << "Aperte ENTER para o proximo item" << std::endl;
+
     ConsoleUtils::wait_for_enter();
   }
 
