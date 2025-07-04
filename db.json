@@ -1,5 +1,13 @@
 {
-  "stock": [],
-  "product": [],
-  "vendor": []
+    "product": [],
+    "stock": [
+        {
+            "last_movement_date": "2",
+            "location": "2",
+            "product_id": 2,
+            "quantity": 5,
+            "stock_id": 2
+        }
+    ],
+    "vendor": []
 }

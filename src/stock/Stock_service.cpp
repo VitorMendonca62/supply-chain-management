@@ -11,11 +11,19 @@ void enter_for_out()
 {
 #ifdef _WIN32
     _getch();
-    std::system("cls");
 
 #else
     std::cin.ignore();
     std::cin.get();
+#endif
+}
+
+void clear_console()
+{
+#ifdef _WIN32
+    std::system("cls");
+
+#else
     std::system("clear");
 #endif
 }
@@ -24,6 +32,7 @@ void out_service()
 {
     std::cout << "Aperte ENTER para exibir o menu ( As mensagens acima serao apagadas)" << std::endl;
     enter_for_out();
+    clear_console();
 }
 
 void StockService::create()
@@ -88,7 +97,7 @@ void StockService::getAll()
 
     if (!db.contains("stock") || db["stock"].empty())
     {
-        std::cout << "Nenhum item em estoque.";
+        std::cout << "Nenhum item em estoque." << std::endl;
         out_service();
         return;
     }
@@ -97,15 +106,13 @@ void StockService::getAll()
         std::cout
             << "================================="
             << std::endl
-            << "ID do Estoque: " << item.value("stock_id", 0)
+            << "   ID do Estoque: " << item.value("stock_id", 0)
             << std::endl
-            << ", ID do Produto: " << item.value("product_id", 0)
+            << "   Quantidade: " << item.value("quantity", 0)
             << std::endl
-            << ", Quantidade: " << item.value("quantity", 0)
+            << "   Localizacao: " << item.value("location", "")
             << std::endl
-            << ", Localizacao: " << item.value("location", "")
-            << std::endl
-            << ", Ultima Movimentacao: " << item.value("last_movement_date", "") << std::endl
+            << "   Ultima Movimentacao: " << item.value("last_movement_date", "") << std::endl
             << "================================="
             << std::endl;
         std::cout << "Aperte ENTER para o proximo item" << std::endl;
@@ -140,11 +147,16 @@ void StockService::getOne()
         {
             if (item.value("stock_id", 0) == stock_id)
             {
-                std::cout << "Detalhes do item de estoque:";
-                std::cout << "  ID do Produto: " << item.value("product_id", 0) << std::endl;
-                std::cout << "  Quantidade: " << item.value("quantity", 0) << std::endl;
-                std::cout << "  Localizacao: " << item.value("location", "") << std::endl;
-                std::cout << "  Ultima Movimentacao: " << item.value("last_movement_date", "") << std::endl;
+                std::cout << "Detalhes do item de estoque:"
+                          << std::endl
+                          << "  ID do Produto: " << item.value("product_id", 0)
+                          << std::endl
+                          << "  Quantidade: " << item.value("quantity", 0)
+                          << std::endl
+                          << "  Localizacao: " << item.value("location", "")
+                          << std::endl
+                          << "  Ultima Movimentacao: " << item.value("last_movement_date", "")
+                          << std::endl;
                 found = true;
                 break;
             }
@@ -152,7 +164,7 @@ void StockService::getOne()
     }
     if (!found)
     {
-        std::cout << "Item de estoque nao encontrado.";
+        std::cout << "Item de estoque nao encontrado." << std::endl;
     }
     out_service();
 }
@@ -203,7 +215,7 @@ void StockService::updateStockItemQuantity()
     std::ofstream outFile("../db.json");
     outFile << db.dump(4);
     outFile.close();
-    std::cout << "Quantidade atualizada com sucesso!";
+    std::cout << "Quantidade atualizada com sucesso!" << std::endl;
     out_service();
 }
 
