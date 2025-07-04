@@ -10,9 +10,12 @@ using json = nlohmann::json;
 void ProductService::create()
 {
   std::string name, description, unit_measure;
+  int id;
   int weigth;
 
   std::cout << "Iniciando criacao de novo produto..." << std::endl;
+  std::cout << "Informe o id do produto: ";
+  std::cin >> id;
   std::cout << "Informe o nome do produto: ";
   std::cin >> name;
   std::cout << "Informe a descricao do produto: ";
@@ -22,24 +25,21 @@ void ProductService::create()
   std::cout << "Informe a unidade de medida: ";
   std::cin >> unit_measure;
 
-  std::ifstream inFile("../db.json");
-  json db;
-  if (inFile.is_open())
-  {
-    inFile >> db;
-    inFile.close();
-  }
-
-  int id = 1;
-  if (db.contains("product") && !db["product"].empty())
-  {
-    id = db["product"].back().value("id", 0) + 1;
-  }
-
   Product product(id, name, description, weigth, unit_measure);
 
   json productJson = product.toJson();
 
+  std::ifstream inFile("../db.json");
+  if (!inFile.is_open())
+  {
+    std::cout << "Nao foi possivel abrir o arquivo de estoque." << std::endl;
+    ConsoleUtils::pause_and_clear();
+    return;
+  }
+  
+  json db;
+  inFile >> db;
+  inFile.close();
   db["product"].push_back(productJson);
 
   std::ofstream outFile("../db.json");

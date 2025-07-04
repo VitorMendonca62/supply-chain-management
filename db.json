@@ -1,5 +1,27 @@
 {
-    "product": [],
+    "product": [
+        {
+            "description": "a",
+            "id": 1,
+            "name": "a",
+            "unit_measure": "",
+            "weigth": 0
+        },
+        {
+            "description": "",
+            "id": 2,
+            "name": "",
+            "unit_measure": "",
+            "weigth": 6815263
+        },
+        {
+            "description": "2",
+            "id": 1,
+            "name": "2",
+            "unit_measure": "2",
+            "weigth": 2
+        }
+    ],
     "stock": [
         {
             "last_movement_date": "234",
